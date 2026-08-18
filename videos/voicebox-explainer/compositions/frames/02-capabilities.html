@@ -1,0 +1,167 @@
+<template data-composition-id="02-capabilities" data-duration="13.732">
+  <style>
+    @font-face { font-family: "HfDisplay"; src: local("Noto Sans SC"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "HfBody"; src: local("Noto Sans SC"); font-weight: 400; font-style: normal; }
+    @font-face { font-family: "HfBody"; src: local("Noto Sans SC"); font-weight: 600; font-style: normal; }
+    @font-face { font-family: "Space Grotesk"; src: local("Space Grotesk"); font-weight: 700; font-style: normal; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    #root {
+      container-type: size;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .clip { position: absolute; }
+
+    /* layer 1 — void ground + subtle top-right glow-bloom */
+    #cap-ground {
+      inset: 0;
+      background: #0A0E1A;
+      z-index: 0;
+    }
+    #cap-bloom {
+      top: -22cqh;
+      right: -12cqw;
+      width: 62cqw;
+      height: 62cqh;
+      background: radial-gradient(
+        circle,
+        rgba(0, 229, 255, 0.08) 0%,
+        rgba(0, 229, 255, 0.03) 38%,
+        rgba(0, 229, 255, 0) 70%
+      );
+      transform-origin: 50% 50%;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    /* layer 2 — micro-label "核心能力 · CORE CAPABILITIES" + hairline */
+    #cap-label {
+      top: 7cqh;
+      left: 5cqw;
+      z-index: 4;
+    }
+    #cap-label-text {
+      font-family: "Inter", "HfBody", sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #00E5FF;
+      white-space: nowrap;
+    }
+    #cap-label-rule {
+      width: 9cqw;
+      height: 1px;
+      background: rgba(0, 229, 255, 0.2);
+      margin-top: 1cqh;
+    }
+
+    /* layer 3 — 2x2 grid of surface-blocks */
+    .cap-block {
+      width: 38cqw;
+      height: 28cqh;
+      background: #131825;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      border-radius: 4px;
+      padding: 2.6cqw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.1cqw;
+      z-index: 3;
+    }
+    #cap-block-1 { left: 6cqw; top: 20cqh; }
+    #cap-block-2 { left: 46.5cqw; top: 20cqh; }
+    #cap-block-3 { left: 6cqw; top: 50.5cqh; }
+    #cap-block-4 { left: 46.5cqw; top: 50.5cqh; }
+
+    .cap-num {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 1.2cqw;
+      letter-spacing: 0.1em;
+      color: #00E5FF;
+    }
+    .cap-title {
+      font-family: "Space Grotesk", "HfDisplay", sans-serif;
+      font-weight: 700;
+      font-size: 2cqw;
+      line-height: 1.25;
+      color: #FFFFFF;
+    }
+    .cap-desc {
+      font-family: "Inter", "HfBody", sans-serif;
+      font-weight: 400;
+      font-size: 1.4cqw;
+      line-height: 1.5;
+      color: #8B92A8;
+    }
+
+    /* chrome — pagenum */
+    #cap-pagenum {
+      top: 90cqh;
+      right: 4cqw;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: #757A8C;
+      z-index: 5;
+    }
+  </style>
+
+  <div id="root" data-composition-id="02-capabilities" data-width="1920" data-height="1080" data-start="0" data-duration="13.732">
+    <div id="cap-ground" class="clip" data-start="0" data-duration="13.732" data-track-index="0"></div>
+    <div id="cap-bloom" class="clip" data-start="0" data-duration="13.732" data-track-index="1"></div>
+
+    <div id="cap-label" class="clip" data-start="0" data-duration="13.732" data-track-index="2">
+      <div id="cap-label-text">核心能力 · CORE CAPABILITIES</div>
+      <div id="cap-label-rule"></div>
+    </div>
+
+    <div id="cap-block-1" class="clip cap-block" data-start="2.0" data-duration="11.732" data-track-index="3">
+      <div class="cap-num">01</div>
+      <div class="cap-title">声音克隆 / Voice Cloning</div>
+      <div class="cap-desc">零样本克隆任意声音</div>
+    </div>
+    <div id="cap-block-2" class="clip cap-block" data-start="2.8" data-duration="10.932" data-track-index="4">
+      <div class="cap-num">02</div>
+      <div class="cap-title">语音生成 / Speech Generation</div>
+      <div class="cap-desc">23种语言，7个TTS引擎</div>
+    </div>
+    <div id="cap-block-3" class="clip cap-block" data-start="3.6" data-duration="10.132" data-track-index="5">
+      <div class="cap-num">03</div>
+      <div class="cap-title">全局听写 / Dictation</div>
+      <div class="cap-desc">热键听写到任意应用</div>
+    </div>
+    <div id="cap-block-4" class="clip cap-block" data-start="4.4" data-duration="9.332" data-track-index="6">
+      <div class="cap-num">04</div>
+      <div class="cap-title">代理语音 / Agent Voice</div>
+      <div class="cap-desc">MCP代理用你的声音说话</div>
+    </div>
+
+    <div id="cap-pagenum" class="clip" data-start="0" data-duration="13.732" data-track-index="7">02</div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    gsap.defaults({ overwrite: "auto" });
+
+    var tl = gsap.timeline({ paused: true });
+
+    // Scene 1 (0.0–2.0s) — void + top-right bloom; micro-label tracks in
+    tl.fromTo("#cap-bloom", { opacity: 0 }, { opacity: 1, duration: 1.1, ease: "power3.out" }, 0.15)
+      .fromTo("#cap-label", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.3);
+
+    // Scene 2 (2.0s+) — blocks stagger in, 0.8s apart (y:40 opacity:0 → y:0 opacity:1)
+    tl.fromTo(".cap-block", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, stagger: 0.8, ease: "power3.out" }, 2.0);
+
+    // subtle bloom pulse at 8.5s
+    tl.to("#cap-bloom", { scale: 1.05, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 8.5);
+
+    window.__timelines["02-capabilities"] = tl;
+  </script>
+</template>

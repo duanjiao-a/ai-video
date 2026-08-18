@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js" integrity="sha384-sG0Hv1tP1lZCk9KQmrIbY/XNwi+OY84GQqhMscbnsoBFqAz8KNCil1kvfL3Hbbk2" crossorigin="anonymous"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #0A0E1A;
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="79.872"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- Frame 1: Title (0 – 9.244s) -->
+      <div
+        id="el-01-title"
+        class="scene"
+        data-composition-id="01-title"
+        data-composition-src="compositions/frames/01-title.html"
+        data-start="0"
+        data-duration="9.244"
+        data-track-index="0"
+      ></div>
+
+      <!-- Frame 2: Capabilities (8.744 – 22.476s) -->
+      <div
+        id="el-02-capabilities"
+        class="scene"
+        data-composition-id="02-capabilities"
+        data-composition-src="compositions/frames/02-capabilities.html"
+        data-start="8.744"
+        data-duration="13.732"
+        data-track-index="1"
+      ></div>
+
+      <!-- Frame 3: Engines (21.976 – 38.660s) -->
+      <div
+        id="el-03-engines"
+        class="scene"
+        data-composition-id="03-engines"
+        data-composition-src="compositions/frames/03-engines.html"
+        data-start="21.976"
+        data-duration="16.684"
+        data-track-index="0"
+      ></div>
+
+      <!-- Frame 4: Architecture (38.160 – 54.172s) -->
+      <div
+        id="el-04-architecture"
+        class="scene"
+        data-composition-id="04-architecture"
+        data-composition-src="compositions/frames/04-architecture.html"
+        data-start="38.160"
+        data-duration="16.012"
+        data-track-index="1"
+      ></div>
+
+      <!-- Frame 5: MCP (53.672 – 68.172s) -->
+      <div
+        id="el-05-mcp"
+        class="scene"
+        data-composition-id="05-mcp"
+        data-composition-src="compositions/frames/05-mcp.html"
+        data-start="53.672"
+        data-duration="14.500"
+        data-track-index="0"
+      ></div>
+
+      <!-- Frame 6: Open Source (67.672 – 79.872s) -->
+      <div
+        id="el-06-opensource"
+        class="scene"
+        data-composition-id="06-opensource"
+        data-composition-src="compositions/frames/06-opensource.html"
+        data-start="67.672"
+        data-duration="12.200"
+        data-track-index="1"
+      ></div>
+
+      <!-- Captions -->
+      <div
+        id="el-captions"
+        class="scene"
+        data-composition-id="captions"
+        data-composition-src="compositions/captions.html"
+        data-start="0"
+        data-duration="79.872"
+        data-track-index="2"
+      ></div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+      // ── frame transitions (crossfade) ──
+      (function () { var tl = window.__timelines["main"];
+        tl.to("#el-01-title", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 8.744);
+        tl.fromTo("#el-02-capabilities", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 8.744);
+        tl.to("#el-02-capabilities", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 21.976);
+        tl.fromTo("#el-03-engines", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 21.976);
+        tl.to("#el-03-engines", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 38.160);
+        tl.fromTo("#el-04-architecture", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 38.160);
+        tl.to("#el-04-architecture", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 53.672);
+        tl.fromTo("#el-05-mcp", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 53.672);
+        tl.to("#el-05-mcp", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 67.672);
+        tl.fromTo("#el-06-opensource", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut" }, 67.672);
+        tl.to({}, { duration: 79.872 }, 0); // full-span anchor
+      })();
+    </script>
+  </body>
+</html>

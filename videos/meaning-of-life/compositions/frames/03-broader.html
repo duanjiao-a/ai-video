@@ -1,0 +1,245 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "HfDisplaySerif";
+      src: local("STZhongsong");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "HfDisplaySerif";
+      src: local("STZhongsong");
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "HfBodySans";
+      src: local("Microsoft YaHei");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "HfBodySans";
+      src: local("Microsoft YaHei");
+      font-weight: 700;
+      font-style: normal;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      container-type: size;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    /* ---- ground + blooms (dedicated clip layer, never #root background) ---- */
+    #broader-ground {
+      position: absolute;
+      inset: 0;
+      background: #e9e5db;
+      z-index: 0;
+    }
+    #broader-ember {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 44cqw;
+      height: 44cqw;
+      background: radial-gradient(
+        circle at 65% 35%,
+        rgba(226, 107, 74, 0.2) 0%,
+        rgba(226, 107, 74, 0.09) 45%,
+        rgba(226, 107, 74, 0) 72%
+      );
+      opacity: 0;
+      z-index: 1;
+    }
+    #broader-sun {
+      position: absolute;
+      left: 25cqw;
+      top: 17cqh;
+      width: 46cqw;
+      height: 46cqh;
+      background: radial-gradient(
+        circle at 50% 50%,
+        rgba(241, 238, 46, 0.85) 0%,
+        rgba(248, 243, 155, 0.5) 32%,
+        rgba(240, 218, 124, 0.22) 58%,
+        rgba(233, 229, 219, 0) 74%
+      );
+      opacity: 0;
+      z-index: 2;
+    }
+    /* ---- hub + label + pagenum ---- */
+    #broader-hub {
+      position: absolute;
+      left: 48cqw;
+      top: 40cqh;
+      font-family: "HfDisplaySerif", serif;
+      font-weight: 400;
+      font-size: 9cqw;
+      line-height: 1;
+      letter-spacing: 0.04em;
+      color: #1b2566;
+      white-space: nowrap;
+      will-change: transform;
+      z-index: 4;
+    }
+    #broader-label {
+      position: absolute;
+      left: 48cqw;
+      top: 28cqh;
+      font-family: "HfBodySans", sans-serif;
+      font-weight: 700;
+      font-size: 1.6cqw;
+      letter-spacing: 0.62em;
+      color: #1b2566;
+      white-space: nowrap;
+      z-index: 5;
+    }
+    #broader-page {
+      position: absolute;
+      right: 3.4cqw;
+      top: 78.5cqh;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: rgba(27, 37, 102, 0.75);
+      z-index: 6;
+    }
+    /* ---- constellation burst (origin = hub point) ---- */
+    #broader-burst {
+      position: absolute;
+      left: 48cqw;
+      top: 40cqh;
+      width: 0;
+      height: 0;
+      z-index: 3;
+    }
+    .cn {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 320px;
+      height: 1px;
+      background: rgba(27, 37, 102, 0.18);
+      transform-origin: 0 50%;
+      opacity: 0;
+    }
+    #cn-1 {
+      transform: rotate(-170deg);
+    }
+    #cn-2 {
+      transform: rotate(-98deg);
+    }
+    #cn-3 {
+      transform: rotate(-26deg);
+    }
+    #cn-4 {
+      transform: rotate(46deg);
+    }
+    #cn-5 {
+      transform: rotate(118deg);
+    }
+    .vb {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: "HfDisplaySerif", serif;
+      font-weight: 400;
+      font-size: 2.6cqw;
+      line-height: 1;
+      letter-spacing: 0.05em;
+      color: #1b2566;
+      white-space: nowrap;
+      opacity: 0;
+      will-change: transform;
+    }
+  </style>
+
+  <div
+    id="root"
+    data-composition-id="03-broader"
+    data-width="1920"
+    data-height="1080"
+    data-start="0"
+    data-duration="9.775"
+  >
+    <div id="broader-ground" class="clip" data-start="0" data-duration="10" data-track-index="0"></div>
+    <div id="broader-ember" class="clip" data-start="0" data-duration="10" data-track-index="1"></div>
+    <div id="broader-sun" class="clip" data-start="0" data-duration="10" data-track-index="2"></div>
+    <div id="broader-burst" class="clip" data-start="2" data-duration="8" data-track-index="3">
+      <div id="cn-1" class="cn"></div>
+      <div id="cn-2" class="cn"></div>
+      <div id="cn-3" class="cn"></div>
+      <div id="cn-4" class="cn"></div>
+      <div id="cn-5" class="cn"></div>
+      <div id="vb-1" class="vb">被需要</div>
+      <div id="vb-2" class="vb">去爱</div>
+      <div id="vb-3" class="vb">去痛</div>
+      <div id="vb-4" class="vb">去冒险</div>
+      <div id="vb-5" class="vb">去感受</div>
+    </div>
+    <div id="broader-hub" class="clip" data-start="0" data-duration="10" data-track-index="4">意义</div>
+    <div id="broader-label" class="clip" data-start="0" data-duration="10" data-track-index="5">另一种答案</div>
+    <div id="broader-page" class="clip" data-start="0" data-duration="10" data-track-index="6">03</div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    // Scene 1 (0.0–2.0s): hub word seats center-left, micro-label above, ember warms the opposite corner
+    tl.fromTo(
+      "#broader-hub",
+      { xPercent: -50, yPercent: -50, opacity: 0, y: 26, scale: 0.96 },
+      { xPercent: -50, yPercent: -50, opacity: 1, y: 0, scale: 1, duration: 0.9, ease: "power3.out" },
+      0.25
+    )
+      .fromTo(
+        "#broader-label",
+        { xPercent: -50, yPercent: -50, opacity: 0, y: 12 },
+        { xPercent: -50, yPercent: -50, opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+        0.6
+      )
+      .fromTo("#broader-ember", { opacity: 0 }, { opacity: 1, duration: 1.0, ease: "power2.out" }, 0.5)
+      .fromTo("#broader-page", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, 0.4);
+
+    // Scene 2 (2.0–7.5s): five serif verbs spring outward from the hub, each on its spoken cue
+    // (center-outward expansion — shared origin, xPercent/yPercent -50 baked centering, power3.out)
+    const ring = [
+      { el: "#vb-1", cn: "#cn-1", x: -315.1, y: -55.6, at: 2.5 },
+      { el: "#vb-2", cn: "#cn-2", x: -44.5, y: -316.9, at: 3.5 },
+      { el: "#vb-3", cn: "#cn-3", x: 287.6, y: -140.3, at: 4.3 },
+      { el: "#vb-4", cn: "#cn-4", x: 222.3, y: 230.2, at: 5.3 },
+      { el: "#vb-5", cn: "#cn-5", x: -150.2, y: 282.5, at: 6.4 },
+    ];
+    ring.forEach(function (v) {
+      tl.fromTo(v.cn, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, v.at - 0.15);
+      tl.fromTo(
+        v.el,
+        { xPercent: -50, yPercent: -50, x: 0, y: 0, scale: 0.6, opacity: 0 },
+        { x: v.x, y: v.y, scale: 1, opacity: 1, duration: 1.1, ease: "power3.out" },
+        v.at
+      );
+    });
+
+    // Scene 3 (7.5–10.0s): ring holds; sun-bloom blooms once behind the hub, then a micro-settle (no drift)
+    tl.fromTo(
+      "#broader-sun",
+      { opacity: 0, scale: 0.9 },
+      { opacity: 1, scale: 1, duration: 1.3, ease: "power3.out" },
+      7.6
+    ).fromTo(
+      "#broader-sun",
+      { scale: 1.03, opacity: 0.92 },
+      { scale: 1, opacity: 1, duration: 0.7, ease: "power2.out" },
+      9.0
+    );
+
+    window.__timelines["03-broader"] = tl;
+  </script>
+</template>

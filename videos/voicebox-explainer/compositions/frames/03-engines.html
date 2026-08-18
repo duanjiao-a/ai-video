@@ -1,0 +1,187 @@
+<template data-composition-id="03-engines" data-duration="16.684">
+  <style>
+    @font-face { font-family: "HfDisplay"; src: local("Noto Sans SC"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "HfBody"; src: local("Noto Sans SC"); font-weight: 400; font-style: normal; }
+    @font-face { font-family: "HfBody"; src: local("Noto Sans SC"); font-weight: 600; font-style: normal; }
+    @font-face { font-family: "Space Grotesk"; src: local("Space Grotesk"); font-weight: 700; font-style: normal; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    #root {
+      container-type: size;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .clip { position: absolute; }
+
+    /* layer 1 — void ground + subtle cyan bloom behind the list */
+    #eng-ground {
+      inset: 0;
+      background: #0A0E1A;
+      z-index: 0;
+    }
+    #eng-bloom {
+      left: 28cqw;
+      top: 24cqh;
+      width: 50cqw;
+      height: 50cqh;
+      background: radial-gradient(
+        circle,
+        rgba(0, 229, 255, 0.06) 0%,
+        rgba(0, 229, 255, 0.02) 42%,
+        rgba(0, 229, 255, 0) 70%
+      );
+      transform-origin: 50% 50%;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    /* layer 2 — micro-label "7 TTS ENGINES" + hairline */
+    #eng-label {
+      top: 7cqh;
+      left: 5cqw;
+      z-index: 4;
+    }
+    #eng-label-text {
+      font-family: "Inter", "HfBody", sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #00E5FF;
+      white-space: nowrap;
+    }
+    #eng-label-rule {
+      width: 9cqw;
+      height: 1px;
+      background: rgba(0, 229, 255, 0.2);
+      margin-top: 1cqh;
+    }
+
+    /* layer 3 — seven data-rows */
+    .eng-row {
+      left: 6cqw;
+      width: 88cqw;
+      height: 8cqh;
+      display: flex;
+      align-items: center;
+      gap: 2.5cqw;
+      border-bottom: 1px solid rgba(0, 229, 255, 0.12);
+      z-index: 3;
+    }
+    #eng-row-1 { top: 17cqh; }
+    #eng-row-2 { top: 25cqh; }
+    #eng-row-3 { top: 33cqh; }
+    #eng-row-4 { top: 41cqh; }
+    #eng-row-5 { top: 49cqh; }
+    #eng-row-6 { top: 57cqh; }
+    #eng-row-7 { top: 65cqh; }
+
+    .eng-idx {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 1.3cqw;
+      letter-spacing: 0.1em;
+      color: #00E5FF;
+      width: 4cqw;
+      flex-shrink: 0;
+    }
+    .eng-name {
+      font-family: "Space Grotesk", "HfDisplay", sans-serif;
+      font-weight: 700;
+      font-size: 2cqw;
+      line-height: 1.2;
+      color: #FFFFFF;
+      flex: 1;
+    }
+    .eng-meta {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 1.2cqw;
+      letter-spacing: 0.05em;
+      color: #8B92A8;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* chrome — pagenum */
+    #eng-pagenum {
+      top: 90cqh;
+      right: 4cqw;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: #757A8C;
+      z-index: 5;
+    }
+  </style>
+
+  <div id="root" data-composition-id="03-engines" data-width="1920" data-height="1080" data-start="0" data-duration="16.684">
+    <div id="eng-ground" class="clip" data-start="0" data-duration="16.684" data-track-index="0"></div>
+    <div id="eng-bloom" class="clip" data-start="0" data-duration="16.684" data-track-index="1"></div>
+
+    <div id="eng-label" class="clip" data-start="0" data-duration="16.684" data-track-index="2">
+      <div id="eng-label-text">7 TTS ENGINES</div>
+      <div id="eng-label-rule"></div>
+    </div>
+
+    <div id="eng-row-1" class="clip eng-row" data-start="2.0" data-duration="14.684" data-track-index="3">
+      <div class="eng-idx">01</div>
+      <div class="eng-name">Qwen3-TTS</div>
+      <div class="eng-meta">10 lang · 0.6B/1.7B</div>
+    </div>
+    <div id="eng-row-2" class="clip eng-row" data-start="2.7" data-duration="13.984" data-track-index="4">
+      <div class="eng-idx">02</div>
+      <div class="eng-name">Qwen CustomVoice</div>
+      <div class="eng-meta">10 lang · Preset</div>
+    </div>
+    <div id="eng-row-3" class="clip eng-row" data-start="3.4" data-duration="13.284" data-track-index="5">
+      <div class="eng-idx">03</div>
+      <div class="eng-name">LuxTTS</div>
+      <div class="eng-meta">EN · ~1GB</div>
+    </div>
+    <div id="eng-row-4" class="clip eng-row" data-start="4.1" data-duration="12.584" data-track-index="6">
+      <div class="eng-idx">04</div>
+      <div class="eng-name">Chatterbox Multilingual</div>
+      <div class="eng-meta">23 lang</div>
+    </div>
+    <div id="eng-row-5" class="clip eng-row" data-start="4.8" data-duration="11.884" data-track-index="7">
+      <div class="eng-idx">05</div>
+      <div class="eng-name">Chatterbox Turbo</div>
+      <div class="eng-meta">EN · 350M</div>
+    </div>
+    <div id="eng-row-6" class="clip eng-row" data-start="5.5" data-duration="11.184" data-track-index="8">
+      <div class="eng-idx">06</div>
+      <div class="eng-name">HumeAI TADA</div>
+      <div class="eng-meta">10 lang · 1B/3B</div>
+    </div>
+    <div id="eng-row-7" class="clip eng-row" data-start="6.2" data-duration="10.484" data-track-index="9">
+      <div class="eng-idx">07</div>
+      <div class="eng-name">Kokoro</div>
+      <div class="eng-meta">8 lang · 82M</div>
+    </div>
+
+    <div id="eng-pagenum" class="clip" data-start="0" data-duration="16.684" data-track-index="10">03</div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    gsap.defaults({ overwrite: "auto" });
+
+    var tl = gsap.timeline({ paused: true });
+
+    // Scene 1 (0.0–2.0s) — void + subtle bloom; micro-label tracks in
+    tl.fromTo("#eng-bloom", { opacity: 0 }, { opacity: 1, duration: 1.1, ease: "power3.out" }, 0.15)
+      .fromTo("#eng-label", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.3);
+
+    // Scene 2 (2.0s+) — rows stagger in, 0.7s apart (x:-30 opacity:0 → x:0 opacity:1)
+    tl.fromTo(".eng-row", { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6, stagger: 0.7, ease: "power3.out" }, 2.0);
+
+    // subtle cyan bloom pulse behind list at 8.5s
+    tl.to("#eng-bloom", { scale: 1.06, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 8.5);
+
+    window.__timelines["03-engines"] = tl;
+  </script>
+</template>

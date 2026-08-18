@@ -1,0 +1,145 @@
+<template data-composition-id="01-title" data-duration="9.244">
+  <style>
+    @font-face { font-family: "HfDisplay"; src: local("Noto Sans SC"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "HfBody"; src: local("Noto Sans SC"); font-weight: 400; font-style: normal; }
+    @font-face { font-family: "HfBody"; src: local("Noto Sans SC"); font-weight: 600; font-style: normal; }
+    @font-face { font-family: "Space Grotesk"; src: local("Space Grotesk"); font-weight: 700; font-style: normal; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    #root {
+      container-type: size;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .clip { position: absolute; }
+
+    /* layer 1 — void ground + centered cyan glow-bloom (the depth layer) */
+    #title-ground {
+      inset: 0;
+      background: #0A0E1A;
+      z-index: 0;
+    }
+    #title-bloom {
+      inset: 0;
+      background: radial-gradient(
+        circle at 50% 46%,
+        rgba(0, 229, 255, 0.10) 0%,
+        rgba(0, 229, 255, 0.05) 30%,
+        rgba(0, 229, 255, 0) 62%
+      );
+      transform-origin: 50% 46%;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    /* layer 2 — micro-label "OPEN SOURCE · LOCAL FIRST" */
+    #title-micro {
+      top: 7cqh;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 4;
+    }
+    #title-micro-text {
+      font-family: "Inter", "HfBody", sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #00E5FF;
+      white-space: nowrap;
+    }
+
+    /* layer 3 — "Voicebox" display title + subtitle */
+    #title-main {
+      top: 40cqh;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 3;
+    }
+    #title-main-text {
+      font-family: "Space Grotesk", "HfDisplay", sans-serif;
+      font-weight: 700;
+      font-size: 10cqw;
+      line-height: 1;
+      letter-spacing: 0.01em;
+      color: #FFFFFF;
+      white-space: nowrap;
+    }
+    #title-main-text .c { display: inline-block; }
+
+    #title-sub {
+      top: 62cqh;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 3;
+    }
+    #title-sub-text {
+      font-family: "Inter", "HfBody", sans-serif;
+      font-weight: 400;
+      font-size: 2.5cqw;
+      letter-spacing: 0.04em;
+      color: #8B92A8;
+      white-space: nowrap;
+    }
+
+    /* chrome — pagenum */
+    #title-pagenum {
+      top: 90cqh;
+      right: 4cqw;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: #757A8C;
+      z-index: 5;
+    }
+  </style>
+
+  <div id="root" data-composition-id="01-title" data-width="1920" data-height="1080" data-start="0" data-duration="9.244">
+    <div id="title-ground" class="clip" data-start="0" data-duration="9.244" data-track-index="0"></div>
+    <div id="title-bloom" class="clip" data-start="0" data-duration="9.244" data-track-index="1"></div>
+
+    <div id="title-micro" class="clip" data-start="0" data-duration="9.244" data-track-index="2">
+      <div id="title-micro-text">OPEN SOURCE · LOCAL FIRST</div>
+    </div>
+
+    <div id="title-main" class="clip" data-start="1.5" data-duration="7.744" data-track-index="3">
+      <div id="title-main-text" aria-label="Voicebox"><span class="c">V</span><span class="c">o</span><span class="c">i</span><span class="c">c</span><span class="c">e</span><span class="c">b</span><span class="c">o</span><span class="c">x</span></div>
+    </div>
+
+    <div id="title-sub" class="clip" data-start="5.0" data-duration="4.244" data-track-index="4">
+      <div id="title-sub-text">开源 AI 语音工作室</div>
+    </div>
+
+    <div id="title-pagenum" class="clip" data-start="0" data-duration="9.244" data-track-index="5">01</div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    gsap.defaults({ overwrite: "auto" });
+
+    var tl = gsap.timeline({ paused: true });
+    var chars = gsap.utils.toArray("#title-main-text .c");
+
+    // Scene 1 (0.0–1.5s) — bloom fades in; micro-label slides from left
+    tl.fromTo("#title-bloom", { opacity: 0 }, { opacity: 1, duration: 1.2, ease: "power3.out" }, 0)
+      .fromTo("#title-micro", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 0.3);
+
+    // Scene 2 (1.5s+) — "Voicebox" assembles letter-by-letter, 0.15s apart
+    tl.fromTo(chars, { y: 48, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: "power3.out" }, 1.5);
+
+    // bloom settle at 4.5s; subtitle fades in at 5.0s
+    tl.to("#title-bloom", { scale: 1.05, duration: 0.3, ease: "power2.inOut", yoyo: true, repeat: 1 }, 4.5)
+      .fromTo("#title-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 5.0);
+
+    // subtle sine-wave idle on bloom after 6.3s (2.7s window → ends at 9.0s)
+    tl.to("#title-bloom", { scale: 1.03, duration: 0.9, ease: "sine.inOut", yoyo: true, repeat: 2 }, 6.3);
+
+    window.__timelines["01-title"] = tl;
+  </script>
+</template>

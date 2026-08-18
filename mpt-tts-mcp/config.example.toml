@@ -1,0 +1,50 @@
+# mpt-tts-mcp configuration example.
+# Copy this file to config.toml to configure TTS providers, or use the
+# corresponding environment variables (env vars take priority).
+
+# Edge TTS (azure v1) is the default provider and needs NO API key.
+
+[app]
+# Timeout in seconds for a single Edge TTS streaming request. 0 disables it.
+# Env: EDGE_TTS_TIMEOUT
+edge_tts_timeout = 30
+
+# Google Gemini TTS. Env: GEMINI_API_KEY
+gemini_api_key = ""
+
+# Xiaomi MiMo TTS (shares the LLM key/base url). Env: MIMO_API_KEY / MIMO_BASE_URL
+mimo_api_key = ""
+mimo_base_url = ""
+mimo_tts_model_name = "mimo-v2.5-tts"
+
+# MiniMax TTS (shared LLM key fallback). Env: MINIMAX_API_KEY / MINIMAX_BASE_URL
+minimax_api_key = ""
+minimax_base_url = ""
+
+[azure]
+# Azure Speech V2 TTS. Env: AZURE_SPEECH_KEY / AZURE_SPEECH_REGION
+speech_key = ""
+speech_region = ""
+
+[siliconflow]
+# SiliconFlow TTS. Env: SILICONFLOW_API_KEY
+api_key = ""
+
+[minimax_tts]
+# Dedicated MiniMax TTS key/endpoint. Env: MINIMAX_TTS_API_KEY / MINIMAX_TTS_BASE_URL
+api_key = ""
+base_url = ""
+model_id = "speech-2.8-hd"
+voice_id = "English_expressive_narrator"
+
+[elevenlabs]
+# ElevenLabs TTS. Env: ELEVENLABS_API_KEY
+api_key = ""
+model_id = "eleven_multilingual_v2"
+
+[chatterbox]
+# Self-hosted Chatterbox TTS server. Env: CHATTERBOX_BASE_URL / CHATTERBOX_API_KEY
+base_url = "http://127.0.0.1:4123/v1"
+api_key = ""
+model_id = "chatterbox"
+voices = ["default-Female"]

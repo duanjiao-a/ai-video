@@ -1,0 +1,260 @@
+<template data-composition-id="05-mcp" data-duration="14.5">
+  <style>
+    @font-face { font-family: "HfDisplay"; src: local("Noto Sans SC"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "HfBody"; src: local("Noto Sans SC"); font-weight: 400; font-style: normal; }
+    @font-face { font-family: "HfBody"; src: local("Noto Sans SC"); font-weight: 600; font-style: normal; }
+    @font-face { font-family: "Space Grotesk"; src: local("Space Grotesk"); font-weight: 700; font-style: normal; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    #root {
+      container-type: size;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .clip { position: absolute; }
+
+    /* layer 1 — void ground + violet pulse-bloom (bottom-right counter-accent) */
+    #mcp-ground {
+      inset: 0;
+      background: #0A0E1A;
+      z-index: 0;
+    }
+    #mcp-pulse {
+      right: -8cqw;
+      bottom: -8cqh;
+      width: 42cqw;
+      height: 42cqw;
+      background: radial-gradient(
+        circle,
+        rgba(124, 77, 255, 0.15) 0%,
+        rgba(124, 77, 255, 0.07) 40%,
+        rgba(124, 77, 255, 0) 72%
+      );
+      opacity: 0;
+      z-index: 1;
+    }
+
+    /* layer 2 — micro-label "MCP INTEGRATION" + hairline */
+    #mcp-label {
+      top: 7cqh;
+      left: 5cqw;
+      z-index: 5;
+    }
+    #mcp-label-text {
+      font-family: "Inter", "HfBody", sans-serif;
+      font-weight: 600;
+      font-size: 0.92cqw;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #00E5FF;
+      white-space: nowrap;
+    }
+    #mcp-label-rule {
+      width: 9cqw;
+      height: 1px;
+      background: rgba(0, 229, 255, 0.2);
+      margin-top: 1cqh;
+    }
+
+    /* layer 3 — three flow nodes (surface-blocks, left-to-right) */
+    .mcp-node {
+      top: 34cqh;
+      width: 22cqw;
+      height: 16cqh;
+      background: #131825;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      border-top: 1px solid rgba(0, 229, 255, 0.4);
+      border-radius: 4px;
+      padding: 1.6cqw 1.8cqw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      z-index: 3;
+    }
+    #mcp-node-1 { left: 11cqw; }
+    #mcp-node-2 { left: 39cqw; }
+    #mcp-node-3 { left: 67cqw; }
+
+    .node-label {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 0.85cqw;
+      letter-spacing: 0.16em;
+      color: #00E5FF;
+      margin-bottom: 1cqh;
+    }
+    .node-title {
+      font-family: "Space Grotesk", "HfDisplay", sans-serif;
+      font-weight: 700;
+      font-size: 1.8cqw;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
+    }
+    /* node 2 — code-block treatment for voicebox.speak() */
+    .node-codeblock {
+      display: inline-block;
+      background: #060912;
+      border: 1px solid rgba(0, 229, 255, 0.15);
+      border-radius: 4px;
+      padding: 0.6cqw 1cqw;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 1.8cqw;
+      line-height: 1.1;
+      color: #FFFFFF;
+    }
+
+    /* output-node cyan glow (pulse layer, sits behind node 3) */
+    #mcp-node-3-glow {
+      left: 60cqw;
+      top: 27cqh;
+      width: 36cqw;
+      height: 30cqh;
+      background: radial-gradient(
+        circle,
+        rgba(0, 229, 255, 0.28) 0%,
+        rgba(0, 229, 255, 0.10) 45%,
+        rgba(0, 229, 255, 0) 75%
+      );
+      opacity: 0;
+      z-index: 2;
+    }
+
+    /* layer 4 — cyan connector lines + arrows between nodes */
+    .mcp-connector {
+      top: 41cqh;
+      width: 6cqw;
+      height: 2cqh;
+      display: flex;
+      align-items: center;
+      z-index: 3;
+    }
+    #mcp-conn-1 { left: 33cqw; }
+    #mcp-conn-2 { left: 61cqw; }
+    .conn-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(0, 229, 255, 0.4);
+      transform-origin: left center;
+    }
+    .conn-arrow {
+      color: #00E5FF;
+      font-size: 0.85cqw;
+      line-height: 1;
+      margin-left: 0.2cqw;
+    }
+
+    /* layer 5 — code snippet block below the nodes */
+    #mcp-code {
+      top: 58cqh;
+      left: 24cqw;
+      width: 52cqw;
+      background: #060912;
+      border: 1px solid rgba(0, 229, 255, 0.15);
+      border-radius: 4px;
+      padding: 1.6cqw 2cqw;
+      z-index: 3;
+      opacity: 0;
+    }
+    .code-line {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 1cqw;
+      line-height: 1.7;
+      color: #FFFFFF;
+      white-space: pre;
+    }
+    .code-line .kw { color: #00E5FF; }
+    .code-line .prop { color: #8B92A8; }
+    .code-line .str { color: #FFFFFF; }
+
+    /* chrome — pagenum */
+    #mcp-pagenum {
+      top: 90cqh;
+      right: 4cqw;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: #757A8C;
+      z-index: 5;
+    }
+  </style>
+
+  <div id="root" data-composition-id="05-mcp" data-width="1920" data-height="1080" data-start="0" data-duration="14.5">
+    <div id="mcp-ground" class="clip" data-start="0" data-duration="14.5" data-track-index="0"></div>
+    <div id="mcp-pulse" class="clip" data-start="0" data-duration="14.5" data-track-index="1"></div>
+
+    <div id="mcp-label" class="clip" data-start="0" data-duration="14.5" data-track-index="2">
+      <div id="mcp-label-text">MCP INTEGRATION</div>
+      <div id="mcp-label-rule"></div>
+    </div>
+
+    <div id="mcp-node-3-glow" class="clip" data-start="0" data-duration="14.5" data-track-index="3"></div>
+
+    <div id="mcp-node-1" class="clip mcp-node" data-start="2.0" data-duration="12.500" data-track-index="4">
+      <div class="node-label">AI AGENT</div>
+      <div class="node-title">Claude Code · Cursor · Cline</div>
+    </div>
+    <div id="mcp-node-2" class="clip mcp-node" data-start="3.2" data-duration="11.300" data-track-index="5">
+      <div class="node-label">TOOL CALL</div>
+      <div class="node-codeblock">voicebox.speak()</div>
+    </div>
+    <div id="mcp-node-3" class="clip mcp-node" data-start="4.4" data-duration="10.100" data-track-index="6">
+      <div class="node-label">OUTPUT</div>
+      <div class="node-title">🔊 Cloned Voice</div>
+    </div>
+
+    <div id="mcp-conn-1" class="clip mcp-connector" data-start="3.4" data-duration="11.100" data-track-index="7">
+      <div class="conn-line"></div>
+      <div class="conn-arrow">▶</div>
+    </div>
+    <div id="mcp-conn-2" class="clip mcp-connector" data-start="4.6" data-duration="9.900" data-track-index="8">
+      <div class="conn-line"></div>
+      <div class="conn-arrow">▶</div>
+    </div>
+
+    <div id="mcp-code" class="clip" data-start="6.5" data-duration="8.000" data-track-index="9">
+      <div class="code-line"><span class="kw">await</span> voicebox.speak({</div>
+      <div class="code-line">  <span class="prop">text:</span> <span class="str">"Deploy complete."</span></div>
+      <div class="code-line">  <span class="prop">profile:</span> <span class="str">"Morgan"</span></div>
+      <div class="code-line">});</div>
+    </div>
+
+    <div id="mcp-pagenum" class="clip" data-start="0" data-duration="14.5" data-track-index="10">05</div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    gsap.defaults({ overwrite: "auto" });
+
+    var tl = gsap.timeline({ paused: true });
+
+    // Scene 1 (0.0–2.0s) — void + violet pulse-bloom; micro-label tracks in
+    tl.fromTo("#mcp-pulse", { opacity: 0 }, { opacity: 1, duration: 1.1, ease: "power3.out" }, 0.15)
+      .fromTo("#mcp-label", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.3);
+
+    // Scene 2 (2.0–6.0s) — nodes pop in left-to-right, 1.2s apart (scale:0.9 → 1)
+    tl.fromTo("#mcp-node-1", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.9, ease: "power3.out" }, 2.0)
+      .fromTo("#mcp-node-2", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.9, ease: "power3.out" }, 3.2)
+      .fromTo("#mcp-node-3", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.9, ease: "power3.out" }, 4.4);
+
+    // connector lines draw after each node lands (scaleX 0 → 1, origin left), arrow fades in after
+    tl.fromTo("#mcp-conn-1 .conn-line", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 3.4)
+      .fromTo("#mcp-conn-1 .conn-arrow", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 3.85)
+      .fromTo("#mcp-conn-2 .conn-line", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 4.6)
+      .fromTo("#mcp-conn-2 .conn-arrow", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 5.05);
+
+    // Scene 3 (6.5+) — code snippet fades in
+    tl.fromTo("#mcp-code", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 6.5);
+
+    // output node cyan glow pulse at 7.5s
+    tl.fromTo("#mcp-node-3-glow", { opacity: 0 }, { opacity: 0.9, duration: 0.6, ease: "power3.out" }, 7.5)
+      .to("#mcp-node-3-glow", { opacity: 0.5, duration: 0.9, ease: "power3.out" }, 8.1);
+
+    window.__timelines["05-mcp"] = tl;
+  </script>
+</template>

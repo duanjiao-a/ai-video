@@ -1,0 +1,124 @@
+<template data-composition-id="04-twist" data-duration="9.561">
+  <style>
+    @font-face { font-family: "HfDisplaySerif"; src: local("STZhongsong"); font-weight: 400; font-style: normal; }
+    @font-face { font-family: "HfDisplaySerif"; src: local("STZhongsong"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "HfBodySans"; src: local("Microsoft YaHei"); font-weight: 400; font-style: normal; }
+    @font-face { font-family: "HfBodySans"; src: local("Microsoft YaHei"); font-weight: 700; font-style: normal; }
+
+    #root {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      container-type: size;
+    }
+
+    .clip { position: absolute; inset: 0; }
+
+    /* layer 1 — the withdrawn sun-bloom: a faint haze behind center (full-bleed ground) */
+    #f04twist-haze {
+      z-index: 1;
+      background: radial-gradient(
+        ellipse 52% 48% at 50% 42%,
+        rgba(241, 238, 46, 0.5) 0%,
+        rgba(248, 243, 155, 0.28) 34%,
+        rgba(240, 218, 124, 0.14) 60%,
+        rgba(240, 218, 124, 0) 78%
+      );
+    }
+
+    /* layer 2 — the oversized serif quote mark, above the text zone */
+    #f04twist-mark {
+      z-index: 2;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    #f04twist-mark .mark {
+      margin-top: 1.2cqw;
+      font-family: "HfDisplaySerif", serif;
+      font-size: 18cqw;
+      line-height: 1;
+      font-weight: 400;
+      color: #1b2566;
+      opacity: 0.1;
+    }
+
+    /* layer 3 — the italic display line, centered at y ≈ 0.42 × height (≈455px) */
+    #f04twist-text {
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #f04twist-text .lines {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9cqw;
+      margin-bottom: 8.85cqw; /* lift the block center from 540 → ≈455 */
+    }
+    #f04twist-text .line {
+      font-family: "HfDisplaySerif", serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: 6.5cqw;
+      line-height: 1.28;
+      letter-spacing: 0.02em;
+      color: #1b2566;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* chrome — pagenum, kept above the caption keep-out (y ≈ 890) */
+    #f04twist-pagenum {
+      position: absolute;
+      top: 866px;
+      right: 4.2cqw;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: rgba(27, 37, 102, 0.75);
+    }
+  </style>
+
+  <div id="root" data-composition-id="04-twist" data-start="0" data-duration="10" data-track-index="0" data-width="1920" data-height="1080">
+    <div id="f04twist-haze" class="clip" data-start="0" data-duration="10" data-track-index="1"></div>
+    <div id="f04twist-mark" data-layout-ignore class="clip" data-start="0" data-duration="10" data-track-index="2">
+      <div class="mark">「</div>
+    </div>
+    <div id="f04twist-text" class="clip" data-start="2.5" data-duration="7.5" data-track-index="3">
+      <div class="lines">
+        <div class="line">也许，人生没有</div>
+        <div class="line">预设的答案。</div>
+      </div>
+    </div>
+    <div id="f04twist-pagenum">04</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+    gsap.defaults({ overwrite: "auto" });
+
+    var tl = gsap.timeline({ paused: true });
+
+    // Scene 1 (0.0–2.5s) — bare parchment, the withdrawn haze, the faint quote mark
+    tl.fromTo("#f04twist-mark", { opacity: 0 }, { opacity: 0.1, duration: 0.9, ease: "power3.out" }, 0);
+
+    // Scene 2 (2.5–6.0s) — ONE restrained move: the line slides up and firms in;
+    // the giant quote mark firms to ink 18% behind it
+    tl.fromTo(
+      "#f04twist-text",
+      { y: 46, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.8, ease: "power3.out" },
+      2.5,
+    );
+    tl.fromTo("#f04twist-mark", { opacity: 0.1 }, { opacity: 0.18, duration: 1.6, ease: "power3.out" }, 2.5);
+
+    // Scene 3 (6.0–10.0s) — the held breather: at most the faintest settle, then stillness
+    tl.fromTo("#f04twist-text", { y: 2 }, { y: 0, duration: 1.0, ease: "power3.out" }, 6.2);
+
+    window.__timelines["04-twist"] = tl;
+  </script>
+</template>

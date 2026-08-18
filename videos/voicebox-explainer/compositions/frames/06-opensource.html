@@ -1,0 +1,195 @@
+<template data-composition-id="06-opensource" data-duration="12.2">
+  <style>
+    @font-face { font-family: "HfDisplay"; src: local("Noto Sans SC"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "HfBody"; src: local("Noto Sans SC"); font-weight: 400; font-style: normal; }
+    @font-face { font-family: "HfBody"; src: local("Noto Sans SC"); font-weight: 600; font-style: normal; }
+    @font-face { font-family: "Space Grotesk"; src: local("Space Grotesk"); font-weight: 700; font-style: normal; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    #root {
+      container-type: size;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .clip { position: absolute; }
+
+    /* layer 1 — void ground + BRIGHT centered cyan glow-bloom (~60% of frame) */
+    #os-ground {
+      inset: 0;
+      background: #0A0E1A;
+      z-index: 0;
+    }
+    #os-bloom {
+      left: 15cqw;
+      top: 12cqh;
+      width: 70cqw;
+      height: 76cqh;
+      background: radial-gradient(
+        circle at 50% 50%,
+        rgba(0, 229, 255, 0.12) 0%,
+        rgba(0, 229, 255, 0.07) 34%,
+        rgba(0, 229, 255, 0.02) 60%,
+        rgba(10, 14, 26, 0) 80%
+      );
+      opacity: 0;
+      z-index: 1;
+    }
+
+    /* layer 2 — micro-label "OPEN SOURCE" top-center */
+    #os-label {
+      top: 8cqh;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 4;
+    }
+    #os-label-text {
+      font-family: "Inter", "HfBody", sans-serif;
+      font-weight: 600;
+      font-size: 0.92cqw;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: #00E5FF;
+    }
+
+    /* layer 3 — the statement 「完全开源」 huge, per-char reveal */
+    #os-headline {
+      top: 32cqh;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 3;
+      line-height: 1;
+    }
+    .os-char {
+      display: inline-block;
+      font-family: "Space Grotesk", "HfDisplay", sans-serif;
+      font-weight: 700;
+      font-size: 8cqw;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #FFFFFF;
+      will-change: transform;
+    }
+
+    /* layer 4 — subtitle */
+    #os-sub {
+      top: 53cqh;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 4;
+      font-family: "Inter", "HfBody", sans-serif;
+      font-weight: 400;
+      font-size: 2cqw;
+      letter-spacing: 0.02em;
+      color: #8B92A8;
+    }
+
+    /* layer 5 — platform pills row */
+    #os-pills {
+      top: 63cqh;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 1cqw;
+      z-index: 4;
+    }
+    .os-pill {
+      background: rgba(0, 229, 255, 0.15);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      border-radius: 4px;
+      padding: 0.5cqw 1.5cqw;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 1cqw;
+      letter-spacing: 0.06em;
+      color: #00E5FF;
+      will-change: transform;
+    }
+
+    /* layer 6 — GitHub URL */
+    #os-url {
+      top: 74cqh;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 4;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 1.2cqw;
+      letter-spacing: 0.04em;
+      color: #8B92A8;
+    }
+
+    /* chrome — pagenum */
+    #os-pagenum {
+      top: 90cqh;
+      right: 4cqw;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: #757A8C;
+      z-index: 5;
+    }
+  </style>
+
+  <div id="root" data-composition-id="06-opensource" data-width="1920" data-height="1080" data-start="0" data-duration="12.2">
+    <div id="os-ground" class="clip" data-start="0" data-duration="12.2" data-track-index="0"></div>
+    <div id="os-bloom" class="clip" data-start="0" data-duration="12.2" data-track-index="1"></div>
+
+    <div id="os-label" class="clip" data-start="0" data-duration="12.2" data-track-index="2">
+      <span id="os-label-text">OPEN SOURCE</span>
+    </div>
+
+    <div id="os-headline" class="clip" data-start="2.0" data-duration="10.200" data-track-index="3">
+      <span class="os-char">完</span><span class="os-char">全</span><span class="os-char">开</span><span class="os-char">源</span>
+    </div>
+
+    <div id="os-sub" class="clip" data-start="4.0" data-duration="8.200" data-track-index="4">Open Source · MIT License</div>
+
+    <div id="os-pills" class="clip" data-start="5.0" data-duration="7.200" data-track-index="5">
+      <div class="os-pill">macOS</div>
+      <div class="os-pill">Windows</div>
+      <div class="os-pill">Linux</div>
+    </div>
+
+    <div id="os-url" class="clip" data-start="6.0" data-duration="6.200" data-track-index="6">github.com/jamiepine/voicebox</div>
+
+    <div id="os-pagenum" class="clip" data-start="0" data-duration="12.2" data-track-index="7">06</div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    gsap.defaults({ overwrite: "auto" });
+
+    var tl = gsap.timeline({ paused: true });
+
+    // Scene 1 (0.0–2.0s) — bright bloom fades in; micro-label tracks in
+    tl.fromTo("#os-bloom", { opacity: 0 }, { opacity: 0.7, duration: 1.1, ease: "power3.out" }, 0)
+      .fromTo("#os-label", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.3);
+
+    // Scene 2 (2.0–4.0s) — 「完全开源」 builds via per-character staggered reveal (0.2s apart)
+    tl.fromTo(
+      ".os-char",
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.7, ease: "power3.out", stagger: 0.2 },
+      2.0
+    );
+
+    // Scene 3 (4.0–6.0s) — subtitle fades in; pills stagger in; GitHub URL fades in
+    tl.fromTo("#os-sub", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 4.0)
+      .fromTo(".os-pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.18 }, 5.0)
+      .fromTo("#os-url", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 6.0);
+
+    // Scene 4 (6.5–7.0s) — bloom does one bright pulse, then settles; everything holds still after 7.0s
+    tl.to("#os-bloom", { opacity: 1, duration: 0.5, ease: "power3.out" }, 6.5)
+      .to("#os-bloom", { opacity: 0.8, duration: 1.0, ease: "power3.out" }, 7.0);
+
+    window.__timelines["06-opensource"] = tl;
+  </script>
+</template>

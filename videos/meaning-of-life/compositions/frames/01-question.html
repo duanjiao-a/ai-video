@@ -1,0 +1,188 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "HfDisplaySerif";
+      src: local("STZhongsong");
+      font-weight: 400;
+      font-style: normal;
+      font-display: block;
+    }
+    @font-face {
+      font-family: "HfDisplaySerif";
+      src: local("STZhongsong");
+      font-weight: 700;
+      font-style: normal;
+      font-display: block;
+    }
+    @font-face {
+      font-family: "HfBodySans";
+      src: local("Microsoft YaHei");
+      font-weight: 400;
+      font-style: normal;
+      font-display: block;
+    }
+    @font-face {
+      font-family: "HfBodySans";
+      src: local("Microsoft YaHei");
+      font-weight: 700;
+      font-style: normal;
+      font-display: block;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      container-type: size;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: transparent;
+    }
+    #f01q-ground {
+      position: absolute;
+      inset: 0;
+      background: #e9e5db;
+    }
+    #f01q-bloom {
+      position: absolute;
+      left: -9cqw;
+      bottom: -26cqh;
+      width: 62cqw;
+      aspect-ratio: 1 / 1;
+      background: radial-gradient(
+        circle at 44% 62%,
+        #f1ee2e 0%,
+        #f8f39b 24%,
+        #f0da7c 46%,
+        rgba(240, 218, 124, 0) 68%
+      );
+    }
+    #f01q-label {
+      position: absolute;
+      top: 6.5cqh;
+      left: 6cqw;
+      font-family: "HfBodySans", sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.24em;
+      color: #1b2566;
+      white-space: nowrap;
+    }
+    #f01q-line {
+      position: absolute;
+      top: 34cqh;
+      left: 6cqw;
+      font-family: "HfDisplaySerif", serif;
+      font-weight: 700;
+      font-size: 8cqw;
+      line-height: 1.12;
+      letter-spacing: 0.01em;
+      color: #1b2566;
+      white-space: nowrap;
+    }
+    #f01q-line .f01q-chunk {
+      display: inline-block;
+    }
+    #f01q-mark {
+      position: absolute;
+      top: 22.6cqh;
+      left: 70cqw;
+      font-family: "HfDisplaySerif", serif;
+      font-weight: 700;
+      font-size: 22cqw;
+      line-height: 1;
+      color: rgba(27, 37, 102, 0.12);
+    }
+    #f01q-pagenum {
+      position: absolute;
+      right: 4cqw;
+      bottom: 2.5cqh;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: rgba(27, 37, 102, 0.75);
+    }
+  </style>
+
+  <div id="root" data-composition-id="01-question" data-width="1920" data-height="1080" data-start="0" data-duration="10.073">
+    <div id="f01q-ground" class="clip" data-start="0" data-duration="10.073" data-track-index="0"></div>
+    <div id="f01q-bloom" class="clip" data-start="0" data-duration="10.073" data-track-index="1"></div>
+    <div id="f01q-mark" data-layout-ignore class="clip" data-start="0" data-duration="10.073" data-track-index="2">？</div>
+    <div id="f01q-label" class="clip" data-start="0" data-duration="10.073" data-track-index="3">关于存在的提问</div>
+    <div id="f01q-line" class="clip" data-start="0" data-duration="10.073" data-track-index="4">
+      <span id="f01q-c1" class="f01q-chunk">人，</span><span id="f01q-c2" class="f01q-chunk">为什么</span><span id="f01q-c3" class="f01q-chunk">活着？</span>
+    </div>
+    <div id="f01q-pagenum">01</div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    // dynamic-content-sequencing (Adapt) — the word-beats ARE the question's own
+    // characters assembling: chunk start times are pre-computed ONCE from content
+    // length (BASE_DURATION + chars × SEC_PER_CHAR + hold), nothing hardcoded.
+    const CHUNKS = [
+      { id: "#f01q-c1", text: "人，", hold: 0.55 },
+      { id: "#f01q-c2", text: "为什么", hold: 0.55 },
+      { id: "#f01q-c3", text: "活着？", hold: 0.95 },
+    ];
+    const BASE_DURATION = 0.6; // minimum read time per chunk
+    const SEC_PER_CHAR = 0.06; // CJK — lean high
+    const SEQ_START = 1.3; // Scene 2 opens (1.2–4.2s), VO reaches the question
+    let cursor = 0;
+    CHUNKS.forEach(function (c) {
+      const dur = BASE_DURATION + c.text.length * SEC_PER_CHAR + c.hold;
+      const start = cursor;
+      cursor += dur;
+      tl.fromTo(
+        c.id,
+        { y: 48, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+        SEQ_START + start
+      );
+    });
+
+    // Scene 1 (0.0–1.2s): bare parchment + sun-bloom establishes; the micro-label
+    // tracks in from the left edge. Nothing else enters.
+    tl.fromTo("#f01q-bloom", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, 0)
+      .fromTo("#f01q-label", { x: -160, opacity: 0 }, { x: 0, opacity: 1, duration: 0.75, ease: "power3.out" }, 0.3)
+
+      // Scene 2: the giant serif ？ watermark fades in behind as support.
+      .fromTo("#f01q-mark", { opacity: 0, scale: 0.96 }, { opacity: 0.12, scale: 1, duration: 2.0, ease: "power3.out" }, 1.8)
+
+      // Scene 3 (4.2–10.0s): the question holds still; the bloom does ONE finite
+      // settle (no repeat, no re-push) — long-tail power3.out decay to rest.
+      .fromTo("#f01q-bloom", { scale: 1.04 }, { scale: 1, duration: 1.6, ease: "power3.out" }, 4.5);
+
+    // sine-wave-loop (LOW amplitude) — bounded ambient idle on the bloom only;
+    // the question itself holds still and reads. sin(0)=0 at IDLE_START, so there
+    // is no jump off the settle's resting state; settle-and-fade env over the last 20%.
+    const bloomEl = document.getElementById("f01q-bloom");
+    const phase = { p: 0 };
+    const IDLE_START = 6.3;
+    const IDLE_DUR = 10.0 - IDLE_START;
+    const PERIOD = 3.0;
+    const CYCLES = IDLE_DUR / PERIOD;
+    const END_PHASE = Math.PI * 2 * CYCLES;
+    tl.to(
+      phase,
+      {
+        p: END_PHASE,
+        duration: IDLE_DUR,
+        ease: "none",
+        onUpdate: function () {
+          const t = phase.p / END_PHASE; // 0 → 1 across the idle
+          const env = t < 0.8 ? 1 : (1 - t) / 0.2; // settle-and-fade tail
+          const s = Math.sin(phase.p) * env;
+          bloomEl.style.transform = "translateY(" + s * 1.5 + "px) scale(" + (1 + s * 0.004) + ")";
+        },
+      },
+      IDLE_START
+    );
+
+    window.__timelines["01-question"] = tl;
+  </script>
+</template>

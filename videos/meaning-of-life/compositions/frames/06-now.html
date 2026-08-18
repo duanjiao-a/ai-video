@@ -1,0 +1,146 @@
+<template>
+  <style>
+    @font-face { font-family: "HfDisplaySerif"; src: local("STZhongsong"); font-weight: 400; font-style: normal; }
+    @font-face { font-family: "HfDisplaySerif"; src: local("STZhongsong"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "HfBodySans"; src: local("Microsoft YaHei"); font-weight: 400; font-style: normal; }
+    @font-face { font-family: "HfBodySans"; src: local("Microsoft YaHei"); font-weight: 700; font-style: normal; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    #root {
+      container-type: size;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    #f06now-stage { position: absolute; inset: 0; }
+
+    /* Scene 1 — paper ground, full-bleed, painted on a clip layer */
+    #f06now-ground { position: absolute; inset: 0; background: #E9E5DB; }
+
+    /* supporting sun-bloom on the open paper side */
+    #f06now-sunbloom {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 32% 46%, rgba(241, 238, 46, 0.55) 0%, rgba(248, 243, 155, 0.32) 30%, rgba(240, 218, 124, 0.14) 55%, rgba(233, 229, 219, 0) 75%);
+    }
+
+    /* ember counter-bloom, corner opposite the sun panel, always subordinate */
+    #f06now-ember {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 13% 84%, rgba(226, 107, 74, 0.16) 0%, rgba(226, 107, 74, 0) 55%);
+    }
+
+    /* the signature ink-on-sun panel: right third, full height, meets paper directly */
+    #f06now-panel {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 33.3333%;
+      background: #F1EE2E;
+    }
+
+    /* chime glow — one finite pulse behind the panel lockup */
+    #f06now-glow {
+      position: absolute;
+      left: 66.6667%;
+      top: 0;
+      width: 33.3333%;
+      height: 100%;
+      background: radial-gradient(closest-side at 50% 41.5%, rgba(248, 243, 155, 0.95) 0%, rgba(240, 218, 124, 0.5) 42%, rgba(241, 238, 46, 0) 70%);
+    }
+
+    /* Scene 2 — paper-side beat, HfBodySans */
+    #f06now-paperline {
+      position: absolute;
+      left: 8.5cqw;
+      top: 44cqh;
+      font-family: "HfBodySans", sans-serif;
+      font-weight: 400;
+      font-size: 2.3cqw;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+      color: #1B2566;
+      white-space: nowrap;
+    }
+
+    /* Scene 2 — the hero lockup, ink on the sun panel, HfDisplaySerif ~6cqw */
+    #f06now-lockup {
+      position: absolute;
+      left: 66.6667%;
+      width: 33.3333%;
+      top: 30cqh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.6cqh;
+    }
+    #f06now-meaning,
+    #f06now-now {
+      font-family: "HfDisplaySerif", serif;
+      font-weight: 700;
+      font-size: 6cqw;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      color: #1B2566;
+      white-space: nowrap;
+    }
+    #f06now-now span { display: inline-block; }
+
+    /* chrome — pagenum, bottom-right, mono */
+    #f06now-pagenum {
+      position: absolute;
+      right: 2.5cqw;
+      bottom: 2.2cqh;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: rgba(27, 37, 102, 0.75);
+    }
+  </style>
+
+  <div id="root" data-composition-id="06-now" data-width="1920" data-height="1080" data-start="0" data-duration="10">
+    <div id="f06now-stage">
+      <div id="f06now-ground" class="clip" data-start="0" data-duration="10" data-track-index="0"></div>
+      <div id="f06now-sunbloom" class="clip" data-start="0" data-duration="10" data-track-index="1"></div>
+      <div id="f06now-ember" class="clip" data-start="0" data-duration="10" data-track-index="2"></div>
+      <div id="f06now-panel" class="clip" data-start="0" data-duration="10" data-track-index="3"></div>
+      <div id="f06now-glow" class="clip" data-start="0" data-duration="10" data-track-index="4"></div>
+      <div id="f06now-paperline" class="clip" data-start="0" data-duration="10" data-track-index="5">不必急着追问。</div>
+      <div id="f06now-lockup" class="clip" data-start="0" data-duration="10" data-track-index="6">
+        <div id="f06now-meaning">意义，</div>
+        <div id="f06now-now"><span>就</span><span>在</span><span>此</span><span>刻</span><span>。</span></div>
+      </div>
+      <div id="f06now-pagenum" class="clip" data-start="0" data-duration="10" data-track-index="7">06</div>
+    </div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    // Scene 1 (0.0–3.0s) — paper ground holds; the full-height sun panel slides up
+    // (smooth long-tail ease); blooms breathe in on the open paper side
+    tl.fromTo("#f06now-panel", { yPercent: 108 }, { yPercent: 0, duration: 1.7, ease: "power3.out" }, 0)
+      .fromTo("#f06now-sunbloom", { opacity: 0 }, { opacity: 1, duration: 1.5, ease: "power2.out" }, 0.3)
+      .fromTo("#f06now-ember", { opacity: 0 }, { opacity: 1, duration: 1.5, ease: "power2.out" }, 0.5)
+      .fromTo("#f06now-pagenum", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "power1.out" }, 0.9);
+
+    // Scene 2 (3.0–7.0s) — beats snap in on their cues, landing on the held lockup:
+    // paper line, then 意义，, then 就在此刻。 staggered per word (ink on sun)
+    tl.fromTo("#f06now-paperline", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 3.6)
+      .fromTo("#f06now-meaning", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 4.9)
+      .fromTo("#f06now-now span", { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out", stagger: 0.1 }, 6.0);
+
+    // Scene 3 (7.0–10.0s) — the film's final still: one finite chime glow behind the
+    // lockup, then stillness; the ONLY exit tween of the film — a gentle close over
+    // the last 0.6s (this is the final frame)
+    tl.fromTo("#f06now-glow", { opacity: 0 }, { opacity: 0.55, duration: 0.5, ease: "power2.out" }, 7.3)
+      .to("#f06now-glow", { opacity: 0, duration: 1.0, ease: "power2.in" }, 7.9)
+      .to("#f06now-stage", { opacity: 0, duration: 0.6, ease: "power2.in" }, 9.4);
+
+    window.__timelines["06-now"] = tl;
+  </script>
+</template>

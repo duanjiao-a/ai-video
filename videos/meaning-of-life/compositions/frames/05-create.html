@@ -1,0 +1,325 @@
+<template>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+
+<style>
+  @font-face { font-family: "HfDisplaySerif"; src: local("STZhongsong"); font-weight: 400; font-style: normal; }
+  @font-face { font-family: "HfDisplaySerif"; src: local("STZhongsong"); font-weight: 700; font-style: normal; }
+  @font-face { font-family: "HfBodySans"; src: local("Microsoft YaHei"); font-weight: 400; font-style: normal; }
+  @font-face { font-family: "HfBodySans"; src: local("Microsoft YaHei"); font-weight: 700; font-style: normal; }
+
+  #root {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    container-type: size;
+    color: #1B2566;
+  }
+
+  /* clips: windows + depth layers (3 depth layers: bg / sparkle / scene+chrome) */
+  .clip { position: absolute; inset: 0; }
+  .f5-clip-bg { z-index: 0; }
+  .f5-clip-sparkle { z-index: 1; }
+  .f5-clip-scene { z-index: 2; }
+  .f5-clip-chrome { z-index: 3; }
+
+  /* ground + sun bloom — full-bleed background, never #root */
+  .f5-ground { position: absolute; inset: 0; background: #E9E5DB; }
+  .f5-bloom {
+    position: absolute;
+    left: 2cqw; top: 10cqh;
+    width: 56cqw; height: 58cqh;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, #F1EE2E 0%, #F8F39B 46%, #F0DA7C 70%, rgba(240, 218, 124, 0) 100%);
+  }
+
+  /* chrome: micro-label + pagenum */
+  .f5-label {
+    position: absolute;
+    left: 8cqw; top: 25.5cqh;
+    padding-left: 0.5em;
+    font-family: "HfBodySans", sans-serif;
+    font-weight: 700;
+    font-size: 0.95cqw;
+    letter-spacing: 0.5em;
+    color: #1B2566;
+  }
+  .f5-pagenum {
+    position: absolute;
+    right: 5cqw; top: 6.2cqh;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: #1B2566;
+    opacity: 0.75;
+  }
+
+  /* hero statement — asymmetric 60/40, left-anchored */
+  .f5-statement { position: absolute; left: 8cqw; top: 33cqh; }
+  .f5-row { display: flex; white-space: nowrap; font-size: 6.8cqw; }
+  .f5-row2 { margin-top: 1.3cqh; }
+  .f5-char {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    font-family: "HfDisplaySerif", serif;
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: #1B2566;
+  }
+  .f5-focal { position: relative; display: inline-block; }
+  .f5-focal-under {
+    position: absolute;
+    left: -0.05em; right: -0.05em;
+    top: 0.1em; bottom: 0.08em;
+    background: #F1EE2E;
+    opacity: 0;
+  }
+  .f5-rule {
+    height: 1px;
+    margin-top: 1.8cqh;
+    background: #1B2566;
+    transform-origin: left center;
+  }
+
+  /* payoff line */
+  .f5-payoff {
+    position: absolute;
+    left: 8cqw; top: 66cqh;
+    font-family: "HfBodySans", sans-serif;
+    font-weight: 400;
+    font-size: 2.2cqw;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+    white-space: nowrap;
+    color: #1B2566;
+  }
+  .f5-payoff .word { display: inline-block; }
+  .f5-payoff .word.kw { text-shadow: 0 0 0 rgba(27, 37, 102, 0); }
+
+  /* sparkle burst behind 「创造」 */
+  .f5-sparkle { position: absolute; left: 35.2cqw; top: 54.55cqh; width: 0; height: 0; }
+  .f5-dot { position: absolute; }
+</style>
+
+<div id="root" data-composition-id="05-create" data-width="1920" data-height="1080" data-duration="10.799">
+  <!-- Scene 1 (0–1.5s): sun-bloom re-blooms; ground + bloom on a clip layer -->
+  <div class="clip f5-clip-bg" data-start="0" data-duration="10" data-track-index="0">
+    <div class="f5-ground"></div>
+    <div class="f5-bloom"></div>
+  </div>
+
+  <!-- chrome: micro-label 「答案」 + pagenum (persists) -->
+  <div class="clip f5-clip-chrome" data-start="0" data-duration="10" data-track-index="3">
+    <div class="f5-label">答案</div>
+    <div class="f5-pagenum">05</div>
+  </div>
+
+  <!-- Scene 2 (1.5–5.5s): statement builds beat by beat, holds through the close -->
+  <div class="clip f5-clip-scene" data-start="1.5" data-duration="8.5" data-track-index="1">
+    <div class="f5-statement">
+      <div class="f5-row">
+        <span class="f5-char" data-beat="1">意</span><span class="f5-char" data-beat="1">义</span>
+        <span class="f5-char" data-beat="2">不</span><span class="f5-char" data-beat="2">是</span><span class="f5-char" data-beat="2">被</span><span class="f5-char" data-beat="2">找</span><span class="f5-char" data-beat="2">到</span><span class="f5-char" data-beat="2">的</span><span class="f5-char" data-beat="2">，</span>
+      </div>
+      <div class="f5-row f5-row2">
+        <span class="f5-char" data-beat="3">而</span><span class="f5-char" data-beat="3">是</span><span class="f5-char" data-beat="3">被</span>
+        <span class="f5-focal">
+          <span class="f5-focal-under"></span>
+          <span class="f5-char" data-beat="3">创</span>
+          <span class="f5-char" data-beat="3">造</span>
+        </span>
+        <span class="f5-char" data-beat="3">的</span><span class="f5-char" data-beat="3">。</span>
+      </div>
+      <div class="f5-rule"></div>
+    </div>
+  </div>
+
+  <!-- Scene 3 (5.5–8.0s): payoff line reveals word by word, holds through the close -->
+  <div class="clip f5-clip-scene" data-start="5.5" data-duration="4.5" data-track-index="2">
+    <div class="f5-payoff">
+      <span class="word w-1">它</span><span class="word w-2">在</span><span class="word w-3">你</span><span class="word kw w-4" data-word="kw-zhu">专注</span><span class="word w-5">的</span><span class="word kw w-6" data-word="kw-ke">每一刻</span><span class="word w-7">里</span><span class="word w-8">生长。</span>
+    </div>
+  </div>
+
+  <!-- Scene 4 (8–10s): sparkle bursts once behind 「创造」 -->
+  <div class="clip f5-clip-sparkle" data-start="8" data-duration="2" data-track-index="4">
+    <div class="f5-sparkle"></div>
+  </div>
+</div>
+
+<script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+
+  /* ============ Scene 1 (0–1.5s) — the color returns ============ */
+  tl.fromTo(
+    ".f5-bloom",
+    { opacity: 0.25, scale: 0.9, filter: "grayscale(0.8) brightness(0.6)" },
+    { opacity: 1, scale: 1, filter: "grayscale(0) brightness(1)", duration: 1.4, ease: "power3.out" },
+    0,
+  );
+  tl.fromTo(
+    ".f5-label",
+    { y: -16, opacity: 0 },
+    { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
+    0.5,
+  );
+  tl.fromTo(
+    ".f5-pagenum",
+    { opacity: 0 },
+    { opacity: 0.75, duration: 0.6, ease: "power3.out" },
+    0.4,
+  );
+
+  /* ============ Scene 2 (1.5–5.5s) — statement builds beat by beat ============
+     One VO-paced beat array; each line lands with its own entrance
+     (kinetic-beat-slam: distinct axes, distinct easings). */
+  const BEATS = [1.6, 2.15, 3.8];
+
+  /* beat 1 「意义」 — scale slam */
+  tl.fromTo(
+    '.f5-char[data-beat="1"]',
+    { scale: 1.45, opacity: 0, filter: "blur(12px)" },
+    { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.42, ease: "power4.out", stagger: 0.12 },
+    BEATS[0],
+  );
+  /* beat 2 「不是被找到的，」 — side snap */
+  tl.fromTo(
+    '.f5-char[data-beat="2"]',
+    { x: -90, opacity: 0 },
+    { x: 0, opacity: 1, duration: 0.45, ease: "expo.out", stagger: 0.07 },
+    BEATS[1],
+  );
+  /* beat 3 「而是被创造的。」 — rise; 「创造」 is the focal */
+  tl.fromTo(
+    '.f5-char[data-beat="3"]',
+    { y: 70, rotation: 3, opacity: 0 },
+    { y: 0, rotation: 0, opacity: 1, duration: 0.5, ease: "circ.out", stagger: 0.07 },
+    BEATS[2],
+  );
+  /* sun underprint lightly touches 「创造」 as the line completes */
+  tl.fromTo(
+    ".f5-focal-under",
+    { opacity: 0, scaleX: 0.5 },
+    { opacity: 0.7, scaleX: 1, duration: 0.45, ease: "power3.out" },
+    BEATS[2] + 0.6,
+  );
+  /* 1px ink hairline extends beneath the statement as it completes */
+  tl.fromTo(
+    ".f5-rule",
+    { scaleX: 0 },
+    { scaleX: 1, duration: 0.7, ease: "power3.out" },
+    4.55,
+  );
+
+  /* ============ Scene 3 (5.5–8.0s) — payoff line, word by word ============
+     dynamic-content-sequencing: per-word windows pre-computed once from
+     content length; each word reveals as the VO reaches it. */
+  const SEGS = [
+    { text: "它", cls: "w-1" },
+    { text: "在", cls: "w-2" },
+    { text: "你", cls: "w-3" },
+    { text: "专注", cls: "w-4 kw", glow: true, word: "kw-zhu" },
+    { text: "的", cls: "w-5" },
+    { text: "每一刻", cls: "w-6 kw", glow: true, word: "kw-ke" },
+    { text: "里", cls: "w-7" },
+    { text: "生长。", cls: "w-8" },
+  ];
+  const CHAR_RATE = 0.21; // seconds per char — one pacing engine for the whole line
+  let cue = 5.5;
+  const WORDS = SEGS.map((s) => {
+    const start = cue;
+    cue += s.text.length * CHAR_RATE;
+    return Object.assign({}, s, { start });
+  });
+  WORDS.forEach((w) => {
+    const sel = ".f5-payoff ." + w.cls;
+    if (w.glow) {
+      /* keywords: opacity-only reveal — the glow driver owns their transform */
+      tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power3.out" }, w.start);
+    } else {
+      tl.fromTo(sel, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, w.start);
+    }
+  });
+
+  /* asr-keyword-glow: one linear driver loops the keyword envelopes —
+     soft, subtle, ink-based glow; no pop, no color shift. */
+  const GLOW_TIMINGS = {};
+  WORDS.filter((w) => w.glow).forEach((w) => {
+    GLOW_TIMINGS[w.word] = { start: w.start, end: w.start + w.text.length * CHAR_RATE };
+  });
+  const ATTACK_DUR = 0.15;
+  const RELEASE = 0.45;
+  const REST_LEVEL = 0.12;
+  const MAX_BLUR = 14;
+  const MAX_SCALE = 0.045;
+  const INK = [27, 37, 102];
+  const glowWords = gsap.utils.toArray(".f5-payoff .word.kw");
+  function envelope(time, start, end) {
+    if (time < start) return 0;
+    if (time < end) return Math.min((time - start) / ATTACK_DUR, 1);
+    const releaseEnd = end + RELEASE;
+    if (time < releaseEnd) return 1 - ((time - end) / RELEASE) * (1 - REST_LEVEL);
+    return REST_LEVEL;
+  }
+  const driver = { t: 0 };
+  tl.to(
+    driver,
+    {
+      t: 10,
+      duration: 10,
+      ease: "none", // linear — t maps 1:1 to scene time
+      onUpdate: () => {
+        glowWords.forEach((el) => {
+          const timing = GLOW_TIMINGS[el.dataset.word];
+          if (!timing) return;
+          const env = envelope(driver.t, timing.start, timing.end);
+          const alpha = 0.4 * env;
+          el.style.textShadow = "0 0 " + (MAX_BLUR * env) + "px rgba(" + INK[0] + "," + INK[1] + "," + INK[2] + "," + alpha + ")";
+          el.style.transform = "scale(" + (1 + MAX_SCALE * env) + ")";
+        });
+      },
+    },
+    0,
+  );
+
+  /* ============ Scene 4 (8–10s) — sparkle bursts once, then settles ============
+     Deterministic: dot angles/sizes derive from element index, never random. */
+  const sparkle = document.querySelector(".f5-sparkle");
+  const N = 7;
+  const dots = [];
+  for (let i = 0; i < N; i++) {
+    const d = document.createElement("i");
+    const angle = (i * (360 / N)) * Math.PI / 180;
+    const radius = (0.55 + (i % 3) * 0.22) * 130; // px, ~char width of the display face
+    const size = 6 + (i % 3) * 2;
+    d.className = "f5-dot";
+    d.style.left = (Math.cos(angle) * radius - size / 2) + "px";
+    d.style.top = (Math.sin(angle) * radius * 0.62 - size / 2) + "px";
+    d.style.width = size + "px";
+    d.style.height = size + "px";
+    d.style.background = i % 2 === 0 ? "#1B2566" : "#F1EE2E";
+    sparkle.appendChild(d);
+    dots.push(d);
+  }
+  dots.forEach((dot, i) => {
+    tl.fromTo(
+      dot,
+      { scale: 0, rotation: 0, opacity: 0 },
+      { scale: 1, rotation: i % 2 ? 45 : 0, opacity: i % 3 === 0 ? 0.9 : 0.6, duration: 0.3, ease: "power3.out" },
+      8.05 + i * 0.03,
+    );
+    tl.to(dot, { opacity: 0, duration: 0.9, ease: "power3.out" }, 8.4 + i * 0.03);
+  });
+  /* subtle low-amplitude settle on the focal glyphs — one shot, no drift */
+  tl.fromTo(
+    ".f5-focal .f5-char",
+    { scale: 1.025 },
+    { scale: 1, duration: 1.1, ease: "power3.out", immediateRender: false },
+    8.15,
+  );
+
+  window.__timelines["05-create"] = tl;
+</script>
+</template>

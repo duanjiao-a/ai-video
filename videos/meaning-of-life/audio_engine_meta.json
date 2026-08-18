@@ -1,0 +1,612 @@
+{
+  "tts_provider": "edge-tts",
+  "voice_id": "zh-CN-XiaoxiaoNeural",
+  "bgm": {
+    "path": "assets/bgm/track.wav",
+    "volume": 0.12,
+    "mode": "detached-seed-loop",
+    "duration_s": 56.424
+  },
+  "bgm_pending": true,
+  "bgm_provider": "musicgen",
+  "bgm_pid": 12520,
+  "bgm_log": "D:\\APP\\trae\\traeProject\\ai-video\\videos\\meaning-of-life\\assets\\bgm\\bgm-1785982594037.log",
+  "bgm_mode": "detached-seed-loop",
+  "bgm_target_duration_s": 56.424,
+  "bgm_seed_duration_s": 28,
+  "bgm_loop_count": 2,
+  "voices": [
+    {
+      "id": "01",
+      "path": "assets/voice/01.wav",
+      "duration_s": 6.48,
+      "words": [
+        {
+          "text": "你",
+          "start": 0.102,
+          "end": 0.205
+        },
+        {
+          "text": "有没有",
+          "start": 0.218,
+          "end": 0.707
+        },
+        {
+          "text": "在",
+          "start": 0.733,
+          "end": 0.888
+        },
+        {
+          "text": "某个",
+          "start": 0.9,
+          "end": 1.12
+        },
+        {
+          "text": "深夜",
+          "start": 1.132,
+          "end": 1.622
+        },
+        {
+          "text": "停下",
+          "start": 1.906,
+          "end": 2.266
+        },
+        {
+          "text": "所有",
+          "start": 2.279,
+          "end": 2.64
+        },
+        {
+          "text": "声音",
+          "start": 2.653,
+          "end": 3.143
+        },
+        {
+          "text": "问",
+          "start": 3.401,
+          "end": 3.568
+        },
+        {
+          "text": "过",
+          "start": 3.568,
+          "end": 3.671
+        },
+        {
+          "text": "自己",
+          "start": 3.684,
+          "end": 4.135
+        },
+        {
+          "text": "人",
+          "start": 4.47,
+          "end": 4.754
+        },
+        {
+          "text": "为什么",
+          "start": 5.024,
+          "end": 5.411
+        },
+        {
+          "text": "活着",
+          "start": 5.424,
+          "end": 5.888
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "path": "assets/voice/02.wav",
+      "duration_s": 7.248,
+      "words": [
+        {
+          "text": "有人",
+          "start": 0.102,
+          "end": 0.411
+        },
+        {
+          "text": "说",
+          "start": 0.411,
+          "end": 0.733
+        },
+        {
+          "text": "答案",
+          "start": 1.055,
+          "end": 1.352
+        },
+        {
+          "text": "藏",
+          "start": 1.364,
+          "end": 1.558
+        },
+        {
+          "text": "在",
+          "start": 1.558,
+          "end": 1.687
+        },
+        {
+          "text": "幸福",
+          "start": 1.7,
+          "end": 2.151
+        },
+        {
+          "text": "里",
+          "start": 2.151,
+          "end": 2.395
+        },
+        {
+          "text": "一",
+          "start": 2.627,
+          "end": 2.756
+        },
+        {
+          "text": "顿",
+          "start": 2.756,
+          "end": 2.898
+        },
+        {
+          "text": "好",
+          "start": 2.911,
+          "end": 3.156
+        },
+        {
+          "text": "饭",
+          "start": 3.156,
+          "end": 3.439
+        },
+        {
+          "text": "一次",
+          "start": 3.697,
+          "end": 3.993
+        },
+        {
+          "text": "散步",
+          "start": 4.006,
+          "end": 4.534
+        },
+        {
+          "text": "一阵",
+          "start": 4.766,
+          "end": 5.089
+        },
+        {
+          "text": "晚风",
+          "start": 5.102,
+          "end": 5.604
+        },
+        {
+          "text": "就",
+          "start": 5.81,
+          "end": 5.952
+        },
+        {
+          "text": "足够",
+          "start": 5.965,
+          "end": 6.468
+        },
+        {
+          "text": "了",
+          "start": 6.468,
+          "end": 6.648
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "path": "assets/voice/03.wav",
+      "duration_s": 7.272,
+      "words": [
+        {
+          "text": "也",
+          "start": 0.102,
+          "end": 0.256
+        },
+        {
+          "text": "有人",
+          "start": 0.256,
+          "end": 0.54
+        },
+        {
+          "text": "说",
+          "start": 0.54,
+          "end": 0.862
+        },
+        {
+          "text": "意义",
+          "start": 1.197,
+          "end": 1.519
+        },
+        {
+          "text": "在于",
+          "start": 1.532,
+          "end": 1.828
+        },
+        {
+          "text": "被",
+          "start": 1.854,
+          "end": 1.996
+        },
+        {
+          "text": "需要",
+          "start": 2.009,
+          "end": 2.486
+        },
+        {
+          "text": "在于",
+          "start": 2.756,
+          "end": 3.117
+        },
+        {
+          "text": "去",
+          "start": 3.143,
+          "end": 3.336
+        },
+        {
+          "text": "爱",
+          "start": 3.336,
+          "end": 3.607
+        },
+        {
+          "text": "去",
+          "start": 3.826,
+          "end": 4.032
+        },
+        {
+          "text": "痛",
+          "start": 4.032,
+          "end": 4.315
+        },
+        {
+          "text": "去",
+          "start": 4.509,
+          "end": 4.663
+        },
+        {
+          "text": "冒险",
+          "start": 4.676,
+          "end": 5.218
+        },
+        {
+          "text": "去",
+          "start": 5.462,
+          "end": 5.643
+        },
+        {
+          "text": "真正",
+          "start": 5.656,
+          "end": 6.055
+        },
+        {
+          "text": "地",
+          "start": 6.055,
+          "end": 6.145
+        },
+        {
+          "text": "感受",
+          "start": 6.158,
+          "end": 6.661
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "path": "assets/voice/04.wav",
+      "duration_s": 6.312,
+      "words": [
+        {
+          "text": "但",
+          "start": 0.102,
+          "end": 0.282
+        },
+        {
+          "text": "也许",
+          "start": 0.295,
+          "end": 0.823
+        },
+        {
+          "text": "人生",
+          "start": 1.145,
+          "end": 1.532
+        },
+        {
+          "text": "并",
+          "start": 1.558,
+          "end": 1.712
+        },
+        {
+          "text": "没有",
+          "start": 1.725,
+          "end": 1.944
+        },
+        {
+          "text": "一个",
+          "start": 1.957,
+          "end": 2.202
+        },
+        {
+          "text": "预先",
+          "start": 2.228,
+          "end": 2.602
+        },
+        {
+          "text": "写",
+          "start": 2.614,
+          "end": 2.782
+        },
+        {
+          "text": "好",
+          "start": 2.782,
+          "end": 2.988
+        },
+        {
+          "text": "的",
+          "start": 2.988,
+          "end": 3.091
+        },
+        {
+          "text": "答案",
+          "start": 3.104,
+          "end": 3.568
+        },
+        {
+          "text": "一切",
+          "start": 3.864,
+          "end": 4.277
+        },
+        {
+          "text": "都",
+          "start": 4.29,
+          "end": 4.393
+        },
+        {
+          "text": "要",
+          "start": 4.393,
+          "end": 4.522
+        },
+        {
+          "text": "靠",
+          "start": 4.535,
+          "end": 4.702
+        },
+        {
+          "text": "自己",
+          "start": 4.702,
+          "end": 4.998
+        },
+        {
+          "text": "去",
+          "start": 5.011,
+          "end": 5.166
+        },
+        {
+          "text": "寻找",
+          "start": 5.166,
+          "end": 5.733
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "path": "assets/voice/05.wav",
+      "duration_s": 7.224,
+      "words": [
+        {
+          "text": "意义",
+          "start": 0.102,
+          "end": 0.475
+        },
+        {
+          "text": "不是",
+          "start": 0.501,
+          "end": 0.759
+        },
+        {
+          "text": "被",
+          "start": 0.772,
+          "end": 0.939
+        },
+        {
+          "text": "找到",
+          "start": 0.952,
+          "end": 1.416
+        },
+        {
+          "text": "的",
+          "start": 1.416,
+          "end": 1.635
+        },
+        {
+          "text": "而是",
+          "start": 1.88,
+          "end": 2.151
+        },
+        {
+          "text": "被",
+          "start": 2.163,
+          "end": 2.344
+        },
+        {
+          "text": "创造",
+          "start": 2.344,
+          "end": 2.872
+        },
+        {
+          "text": "的",
+          "start": 2.872,
+          "end": 3.065
+        },
+        {
+          "text": "它",
+          "start": 3.647,
+          "end": 3.814
+        },
+        {
+          "text": "在",
+          "start": 3.814,
+          "end": 3.982
+        },
+        {
+          "text": "你",
+          "start": 3.995,
+          "end": 4.111
+        },
+        {
+          "text": "专注",
+          "start": 4.137,
+          "end": 4.485
+        },
+        {
+          "text": "的",
+          "start": 4.485,
+          "end": 4.575
+        },
+        {
+          "text": "每",
+          "start": 4.588,
+          "end": 4.794
+        },
+        {
+          "text": "一刻",
+          "start": 4.794,
+          "end": 5.206
+        },
+        {
+          "text": "里",
+          "start": 5.206,
+          "end": 5.451
+        },
+        {
+          "text": "悄悄生长",
+          "start": 5.657,
+          "end": 6.611
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "path": "assets/voice/06.wav",
+      "duration_s": 9.888,
+      "words": [
+        {
+          "text": "所以",
+          "start": 0.102,
+          "end": 0.643
+        },
+        {
+          "text": "不必",
+          "start": 0.888,
+          "end": 1.287
+        },
+        {
+          "text": "急",
+          "start": 1.3,
+          "end": 1.468
+        },
+        {
+          "text": "着",
+          "start": 1.468,
+          "end": 1.571
+        },
+        {
+          "text": "追问",
+          "start": 1.583,
+          "end": 2.06
+        },
+        {
+          "text": "走在路上",
+          "start": 2.655,
+          "end": 3.505
+        },
+        {
+          "text": "风",
+          "start": 3.763,
+          "end": 3.93
+        },
+        {
+          "text": "会",
+          "start": 3.943,
+          "end": 4.098
+        },
+        {
+          "text": "告诉",
+          "start": 4.111,
+          "end": 4.485
+        },
+        {
+          "text": "你",
+          "start": 4.485,
+          "end": 4.704
+        },
+        {
+          "text": "仰望星空",
+          "start": 5.026,
+          "end": 5.876
+        },
+        {
+          "text": "光会",
+          "start": 6.095,
+          "end": 6.482
+        },
+        {
+          "text": "告诉",
+          "start": 6.495,
+          "end": 6.856
+        },
+        {
+          "text": "你",
+          "start": 6.856,
+          "end": 7.062
+        },
+        {
+          "text": "意义",
+          "start": 7.642,
+          "end": 8.157
+        },
+        {
+          "text": "就",
+          "start": 8.415,
+          "end": 8.582
+        },
+        {
+          "text": "在",
+          "start": 8.582,
+          "end": 8.737
+        },
+        {
+          "text": "此刻",
+          "start": 8.75,
+          "end": 9.278
+        }
+      ]
+    }
+  ],
+  "sfx": [
+    {
+      "id": "01",
+      "name": "whoosh-short",
+      "file": "assets/sfx/whoosh-short.mp3",
+      "source": "local",
+      "offset_s": 0,
+      "duration_s": 0.57,
+      "volume": 0.35
+    },
+    {
+      "id": "05",
+      "name": "sparkle",
+      "file": "assets/sfx/sparkle.mp3",
+      "source": "local",
+      "offset_s": 0,
+      "duration_s": 1.8,
+      "volume": 0.35
+    },
+    {
+      "id": "06",
+      "name": "chime",
+      "file": "assets/sfx/chime.mp3",
+      "source": "local",
+      "offset_s": 0,
+      "duration_s": 2.5,
+      "volume": 0.35
+    }
+  ],
+  "total_duration_s": 56.424
+}

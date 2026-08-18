@@ -1,0 +1,203 @@
+<template data-composition-id="04-architecture" data-duration="16.012">
+  <style>
+    @font-face { font-family: "HfDisplay"; src: local("Noto Sans SC"); font-weight: 700; font-style: normal; }
+    @font-face { font-family: "HfBody"; src: local("Noto Sans SC"); font-weight: 400; font-style: normal; }
+    @font-face { font-family: "HfBody"; src: local("Noto Sans SC"); font-weight: 600; font-style: normal; }
+    @font-face { font-family: "Space Grotesk"; src: local("Space Grotesk"); font-weight: 700; font-style: normal; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    #root {
+      container-type: size;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .clip { position: absolute; }
+
+    /* layer 1 — void ground + centered glow-bloom (the depth layer) */
+    #arch-ground {
+      inset: 0;
+      background: #0A0E1A;
+      z-index: 0;
+    }
+    #arch-bloom {
+      left: 25cqw;
+      top: 18cqh;
+      width: 50cqw;
+      height: 50cqw;
+      background: radial-gradient(
+        circle,
+        rgba(0, 229, 255, 0.10) 0%,
+        rgba(0, 229, 255, 0.06) 32%,
+        rgba(0, 229, 255, 0.02) 58%,
+        rgba(10, 14, 26, 0) 76%
+      );
+      opacity: 0;
+      z-index: 1;
+    }
+
+    /* layer 2 — micro-label "ARCHITECTURE · 技术架构" + hairline */
+    #arch-label {
+      top: 7cqh;
+      left: 5cqw;
+      z-index: 4;
+    }
+    #arch-label-text {
+      font-family: "Inter", "HfBody", sans-serif;
+      font-weight: 600;
+      font-size: 0.92cqw;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #00E5FF;
+      white-space: nowrap;
+    }
+    #arch-label-rule {
+      width: 9cqw;
+      height: 1px;
+      background: rgba(0, 229, 255, 0.2);
+      margin-top: 1cqh;
+    }
+
+    /* layer 3 — stacked horizontal bands (surface-blocks) */
+    .arch-band {
+      left: 12.5cqw;
+      width: 75cqw;
+      height: 14cqh;
+      background: #131825;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      border-top: 1px solid rgba(0, 229, 255, 0.4);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      padding: 0 3cqw;
+      z-index: 3;
+    }
+    #arch-band-1 { top: 24cqh; }
+    #arch-band-2 { top: 40cqh; }
+    #arch-band-3 { top: 56cqh; }
+
+    .band-label {
+      flex: 0 0 13cqw;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 0.9cqw;
+      letter-spacing: 0.16em;
+      color: #00E5FF;
+    }
+    .band-title {
+      font-family: "Space Grotesk", "HfDisplay", sans-serif;
+      font-weight: 700;
+      font-size: 2.5cqw;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+    }
+    .band-note {
+      margin-left: auto;
+      max-width: 33cqw;
+      text-align: right;
+      font-family: "Inter", "HfBody", sans-serif;
+      font-weight: 400;
+      font-size: 1.1cqw;
+      letter-spacing: 0.02em;
+      color: #8B92A8;
+    }
+
+    /* layer 4 — "100% LOCAL · 完全本地" pill badge */
+    #arch-badge {
+      top: 77cqh;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 229, 255, 0.15);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      border-radius: 4px;
+      padding: 0.6cqw 1.6cqw;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 0.95cqw;
+      letter-spacing: 0.14em;
+      color: #00E5FF;
+      white-space: nowrap;
+      z-index: 4;
+      opacity: 0;
+    }
+
+    /* chrome — pagenum */
+    #arch-pagenum {
+      top: 90cqh;
+      right: 4cqw;
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: #757A8C;
+      z-index: 5;
+    }
+  </style>
+
+  <div id="root" data-composition-id="04-architecture" data-width="1920" data-height="1080" data-start="0" data-duration="16.012">
+    <div id="arch-ground" class="clip" data-start="0" data-duration="16.012" data-track-index="0"></div>
+    <div id="arch-bloom" class="clip" data-start="0" data-duration="16.012" data-track-index="1"></div>
+
+    <div id="arch-label" class="clip" data-start="0" data-duration="16.012" data-track-index="2">
+      <div id="arch-label-text">ARCHITECTURE · 技术架构</div>
+      <div id="arch-label-rule"></div>
+    </div>
+
+    <div id="arch-band-1" class="clip arch-band" data-start="2.0" data-duration="14.012" data-track-index="3">
+      <span class="band-label">FRONTEND</span>
+      <span class="band-title">Tauri (Rust) + React</span>
+      <span class="band-note">Native performance, not Electron</span>
+    </div>
+    <div id="arch-band-2" class="clip arch-band" data-start="3.2" data-duration="12.812" data-track-index="4">
+      <span class="band-label">BACKEND</span>
+      <span class="band-title">Python FastAPI</span>
+      <span class="band-note">90 endpoints · SQLite · Tauri sidecar</span>
+    </div>
+    <div id="arch-band-3" class="clip arch-band" data-start="4.4" data-duration="11.612" data-track-index="5">
+      <span class="band-label">INFERENCE</span>
+      <span class="band-title">MLX / PyTorch</span>
+      <span class="band-note">CUDA · ROCm · Metal · DirectML · CPU</span>
+    </div>
+
+    <div id="arch-badge" class="clip" data-start="7.5" data-duration="8.512" data-track-index="6">100% LOCAL · 完全本地</div>
+    <div id="arch-pagenum" class="clip" data-start="0" data-duration="16.012" data-track-index="7">04</div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    gsap.defaults({ overwrite: "auto" });
+
+    var tl = gsap.timeline({ paused: true });
+
+    // Scene 1 (0.0–2.0s) — void + center glow-bloom; micro-label tracks in
+    tl.fromTo("#arch-bloom", { opacity: 0 }, { opacity: 1, duration: 1.1, ease: "power3.out" }, 0.15)
+      .fromTo("#arch-label", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.3);
+
+    // Scene 2 (2.0–6.0s) — three bands stack in, 1.2s apart (y:50 opacity:0 → y:0 opacity:1)
+    tl.fromTo("#arch-band-1", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" }, 2.0)
+      .fromTo("#arch-band-2", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" }, 3.2)
+      .fromTo("#arch-band-3", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" }, 4.4);
+
+    // Scene 3 (7.5+) — "100% LOCAL" badge fades in; bloom firms once
+    tl.fromTo("#arch-badge", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 7.5)
+      .to("#arch-bloom", { opacity: 1, duration: 1.2, ease: "power3.out" }, 7.6);
+
+    // Subtle jitter after 8.0s — low-amplitude settle, no drift
+    [
+      ["#arch-band-1", 8.1],
+      ["#arch-band-2", 8.25],
+      ["#arch-band-3", 8.4],
+    ].forEach(function (pair) {
+      var sel = pair[0];
+      var t0 = pair[1];
+      tl.to(sel, { y: 1.4, duration: 0.22, ease: "sine.inOut" }, t0)
+        .to(sel, { y: -1.1, duration: 0.26, ease: "sine.inOut" }, t0 + 0.22)
+        .to(sel, { y: 0.6, duration: 0.2, ease: "sine.inOut" }, t0 + 0.48)
+        .to(sel, { y: 0, duration: 0.3, ease: "sine.inOut" }, t0 + 0.68);
+    });
+
+    window.__timelines["04-architecture"] = tl;
+  </script>
+</template>

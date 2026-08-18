@@ -1,0 +1,203 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "HfDisplaySerif";
+      src: local("STZhongsong");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "HfDisplaySerif";
+      src: local("STZhongsong");
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "HfBodySans";
+      src: local("Microsoft YaHei");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "HfBodySans";
+      src: local("Microsoft YaHei");
+      font-weight: 700;
+      font-style: normal;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    #root {
+      container-type: size;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    /* ── depth layer 1 · ground + sun-bloom (dedicated clip, never #root) ── */
+    #h2-ground {
+      position: absolute;
+      inset: 0;
+      background: #e9e5db;
+    }
+    #h2-bloom {
+      position: absolute;
+      left: 30cqw;
+      top: -12cqh;
+      width: 48cqw;
+      height: 48cqw;
+      background: radial-gradient(
+        circle,
+        rgba(241, 238, 46, 0.95) 0%,
+        rgba(248, 243, 155, 0.8) 30%,
+        rgba(240, 218, 124, 0.25) 55%,
+        rgba(233, 229, 219, 0) 70%
+      );
+      opacity: 0.55;
+    }
+
+    /* ── depth layer 2 · the 「幸福」 micro-label under an ink hairline ── */
+    #h2-label {
+      position: absolute;
+      top: 7cqh;
+      left: 5cqw;
+    }
+    #h2-label-text {
+      font-family: "HfBodySans", sans-serif;
+      font-weight: 700;
+      font-size: 1.3cqw;
+      letter-spacing: 0.32em;
+      color: #1b2566;
+    }
+    #h2-label-rule {
+      width: 9cqw;
+      height: 1px;
+      background: #1b2566;
+      margin-top: 1.1cqw;
+    }
+
+    /* ── depth layer 3 · strand-rows (60/40, left-anchored, hairline separators) ── */
+    .h2-row {
+      position: absolute;
+      left: 5cqw;
+      width: 60cqw;
+      display: flex;
+      align-items: baseline;
+      padding-bottom: 2.4cqh;
+      border-bottom: 1px solid rgba(27, 37, 102, 0.2);
+    }
+    #h2-row-1 {
+      top: 18.5cqh;
+    }
+    #h2-row-2 {
+      top: 33.5cqh;
+    }
+    #h2-row-3 {
+      top: 48.5cqh;
+    }
+    .h2-num {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 2.1cqw;
+      letter-spacing: 0.06em;
+      color: #1b2566;
+      margin-right: 2.8cqw;
+    }
+    .h2-title {
+      font-family: "HfDisplaySerif", serif;
+      font-weight: 400;
+      font-size: 4.2cqw;
+      line-height: 1.15;
+      color: #1b2566;
+    }
+    .h2-note {
+      font-family: "HfBodySans", sans-serif;
+      font-weight: 400;
+      font-size: 1.6cqw;
+      letter-spacing: 0.08em;
+      color: rgba(27, 37, 102, 0.66);
+      margin-left: auto;
+    }
+  </style>
+
+  <div
+    id="root"
+    data-composition-id="02-happiness"
+    data-width="1920"
+    data-height="1080"
+    data-start="0"
+    data-duration="10.393"
+  >
+    <div id="h2-ground" class="clip" data-start="0" data-duration="10.393" data-track-index="0">
+      <div id="h2-bloom"></div>
+    </div>
+
+    <div id="h2-label" class="clip" data-start="0" data-duration="10.393" data-track-index="1">
+      <div id="h2-label-text">幸福</div>
+      <div id="h2-label-rule"></div>
+    </div>
+
+    <div id="h2-row-1" class="clip h2-row" data-start="0" data-duration="10.393" data-track-index="2">
+      <span id="h2-r1-num" class="h2-num">01</span>
+      <span id="h2-r1-title" class="h2-title">一顿好饭</span>
+      <span id="h2-r1-note" class="h2-note">烟火气里的确定</span>
+    </div>
+
+    <div id="h2-row-2" class="clip h2-row" data-start="0" data-duration="10.393" data-track-index="3">
+      <span id="h2-r2-num" class="h2-num">02</span>
+      <span id="h2-r2-title" class="h2-title">一次散步</span>
+      <span id="h2-r2-note" class="h2-note">慢慢走，也很好</span>
+    </div>
+
+    <div id="h2-row-3" class="clip h2-row" data-start="0" data-duration="10.393" data-track-index="4">
+      <span id="h2-r3-num" class="h2-num">03</span>
+      <span id="h2-r3-title" class="h2-title">一阵晚风</span>
+      <span id="h2-r3-note" class="h2-note">恰好吹过耳边</span>
+    </div>
+  </div>
+
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    // Scene 1 (0.0–2.0s) — paper + soft sun-bloom top-center; the「幸福」label under an ink hairline
+    tl.fromTo("#h2-bloom", { opacity: 0 }, { opacity: 0.55, duration: 0.9, ease: "power2.out" }, 0.15)
+      .fromTo("#h2-label", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 1.2);
+
+    // Scene 2 (2.0–7.0s) — strand-rows self-assemble in a staggered cascade, one row per VO cue
+    tl.fromTo("#h2-row-1", { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: 0.75, ease: "power3.out" }, 3.2)
+      .fromTo("#h2-r1-num", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 3.25)
+      .fromTo("#h2-r1-title", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 3.32)
+      .fromTo("#h2-r1-note", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 3.4)
+
+      .fromTo("#h2-row-2", { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: 0.75, ease: "power3.out" }, 4.4)
+      .fromTo("#h2-r2-num", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 4.45)
+      .fromTo("#h2-r2-title", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 4.52)
+      .fromTo("#h2-r2-note", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 4.6)
+
+      .fromTo("#h2-row-3", { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: 0.75, ease: "power3.out" }, 5.6)
+      .fromTo("#h2-r3-num", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 5.65)
+      .fromTo("#h2-r3-title", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 5.72)
+      .fromTo("#h2-r3-note", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 5.8);
+
+    // Scene 3 (7.0–10.0s) — the bloom brightens once behind the list and settles; low-amplitude jitter, no drift
+    tl.to("#h2-bloom", { opacity: 0.82, duration: 1.5, ease: "power3.out" }, 7.1);
+
+    [
+      ["#h2-row-1", 7.4],
+      ["#h2-row-2", 7.55],
+      ["#h2-row-3", 7.7],
+    ].forEach(function (pair) {
+      var sel = pair[0];
+      var t0 = pair[1];
+      tl.to(sel, { y: 1.6, duration: 0.22, ease: "sine.inOut" }, t0)
+        .to(sel, { y: -1.3, duration: 0.26, ease: "sine.inOut" }, t0 + 0.22)
+        .to(sel, { y: 0.7, duration: 0.2, ease: "sine.inOut" }, t0 + 0.48)
+        .to(sel, { y: 0, duration: 0.3, ease: "sine.inOut" }, t0 + 0.68);
+    });
+
+    window.__timelines["02-happiness"] = tl;
+  </script>
+</template>
