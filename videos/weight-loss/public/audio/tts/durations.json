@@ -1,0 +1,44 @@
+[
+  {
+    "name": "tts-open",
+    "text": "为什么你减肥总是失败？",
+    "duration": 2.071,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+20%"
+  },
+  {
+    "name": "tts-r1",
+    "text": "第一，节食越狠，反弹越凶。饿到崩溃，只会暴食。",
+    "duration": 4.937,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+20%"
+  },
+  {
+    "name": "tts-r2",
+    "text": "第二，熬夜失眠，食欲激素失控。睡不够，真的会越吃越多。",
+    "duration": 5.385,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+20%"
+  },
+  {
+    "name": "tts-r3",
+    "text": "第三，只做有氧，不练力量。肌肉流失，代谢越来越低。",
+    "duration": 5.083,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+20%"
+  },
+  {
+    "name": "tts-r4",
+    "text": "第四，天天盯体重秤。数字波动的是水分，心态先崩了。",
+    "duration": 5.094,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+20%"
+  },
+  {
+    "name": "tts-outro",
+    "text": "慢慢来，才瘦得久。",
+    "duration": 2.029,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+20%"
+  }
+]

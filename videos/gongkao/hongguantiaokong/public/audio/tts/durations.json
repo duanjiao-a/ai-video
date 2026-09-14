@@ -1,0 +1,58 @@
+[
+  {
+    "name": "tts-open",
+    "text": "比奇堡第一届市长竞选辩论大会，正式开始！今天的辩题是——经济怎么搞？三分钟，搞懂宏观调控！",
+    "duration": 8.343,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+20%"
+  },
+  {
+    "name": "tts-r1",
+    "text": "比奇堡经济低迷，水母失业，蟹堡王销量下滑——这叫总需求不足。国家出手调节，让总供给和总需求平衡，这就是宏观调控！三大手段：经济、法律、行政。",
+    "duration": 13.312,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+20%"
+  },
+  {
+    "name": "tts-r2",
+    "text": "珊迪的方案：政府主动出击！增加支出、发行国债、减少税收——经济冷，政府花！这叫扩张性财政政策。",
+    "duration": 9.281,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+20%"
+  },
+  {
+    "name": "tts-r3",
+    "text": "蟹老板不服：与其政府乱花钱，不如减税，让企业自己投、老百姓自己花——这叫供给侧改革，靠市场自己调节！",
+    "duration": 9.02,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+20%"
+  },
+  {
+    "name": "tts-r4",
+    "text": "吵什么吵！搞经济还得看央行！不动税收、不搞基建，直接调货币：降利率、降准备金率、买进国债——扩张性货币政策！",
+    "duration": 10.656,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+20%"
+  },
+  {
+    "name": "tts-r5",
+    "text": "反过来，经济过热、物价飞涨怎么办？反着来！加税、加息、少花钱——紧缩性政策！口诀：经济热，要收紧。",
+    "duration": 10.146,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+20%"
+  },
+  {
+    "name": "tts-r6",
+    "text": "公考就爱考三件事：判断政策类型，判断扩张还是紧缩，按形势选对策。下次做题，先把口诀背出来！",
+    "duration": 8.635,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+20%"
+  },
+  {
+    "name": "tts-outro",
+    "text": "派大星承诺每天免费发蟹堡，结果物价飞涨、赤字爆炸。这种免费午餐，叫民粹主义。宏观调控，要科学！",
+    "duration": 9.531,
+    "voice": "zh-CN-XiaoxiaoNeural",
+    "rate": "+20%"
+  }
+]
