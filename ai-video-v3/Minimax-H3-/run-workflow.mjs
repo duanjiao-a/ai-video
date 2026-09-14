@@ -22,8 +22,24 @@ import { fileURLToPath } from "node:url";
 import https from "node:https";
 
 // ============ 配置 ============
-const API_BASE = "https://www.runninghub.cn";
-const API_KEY = process.env.RUNNINGHUB_API_KEY;
+// 站点切换：RUNNINGHUB_HOST=cn（中国站 runninghub.cn，默认）| ai（国际站 runninghub.ai）
+// 密钥可用环境变量覆盖：中国站 RUNNINGHUB_API_KEY_CN，国际站 RUNNINGHUB_API_KEY_AI
+const STATIONS = {
+  cn: {
+    base: "https://www.runninghub.cn",
+    key: "06d3f9f56aa94934b86f82872547b0f3",
+    envKey: "RUNNINGHUB_API_KEY_CN",
+  },
+  ai: {
+    base: "https://www.runninghub.ai",
+    key: "8252133ffc2d4b7aa72158caa98eab9b",
+    envKey: "RUNNINGHUB_API_KEY_AI",
+  },
+};
+const stationName = (process.env.RUNNINGHUB_HOST || "cn").toLowerCase();
+const station = STATIONS[stationName] || STATIONS.cn;
+const API_BASE = station.base;
+const API_KEY = process.env[station.envKey] || station.key;
 const WORKFLOW_ID = process.env.RUNNINGHUB_WORKFLOW_ID || "2097875587942666242";
 const OUT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "output");
 
